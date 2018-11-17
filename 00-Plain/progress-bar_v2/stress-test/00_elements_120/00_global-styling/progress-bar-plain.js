@@ -2,6 +2,7 @@ class ProgressBar {
     constructor(parentNode, complete) {
         this._complete = complete || 0;
         this._parentNode = parentNode;
+        this._bar = document.createElement('div');
         this._barInner = document.createElement('div');
 
         this.renderTemplate(this._complete);
@@ -25,5 +26,6 @@ class ProgressBar {
 
         this._bar.classList.add('progress-bar');
         this._bar.appendChild(this._barInner)
+        this._parentNode.appendChild(this._bar)
     }
 }

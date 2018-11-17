@@ -2,6 +2,7 @@ class ProgressBar {
     constructor(parentNode, complete) {
         this._complete = complete || 0;
         this._parentNode = parentNode;
+        this._bar = document.createElement('div');
         this._barInner = document.createElement('div');
 
         this.renderTemplate();
@@ -14,7 +15,7 @@ class ProgressBar {
     set complete(val) {
         this._complete = val;
         // this.renderTemplate(val) re-rendered leads to flickering
-        this.progressBarInner.style.width = this._complete + '%';
+        this._barInner.style.width = this._complete + '%';
         this._barInner.textContent = this._complete + '%';
     }
 

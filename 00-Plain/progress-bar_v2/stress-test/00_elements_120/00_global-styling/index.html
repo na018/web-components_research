@@ -152,8 +152,10 @@
 <script src="progress-bar-plain.js"></script>
 <script>
     (function () {
+        console.log('start')
         const bar_1 = new ProgressBar(document.querySelector('#progress-bar-1'));
-        const bar_2 = new ProgressBar(document.querySelector('#progress-bar-2'), 10);
+        new ProgressBar(document.querySelector('#progress-bar-2'), 10);
+        console.log(bar_1)
 
         const progressBars = document.querySelectorAll('.progress-bar-parent');
         Array.prototype.forEach.call(progressBars, (bar, i) => {

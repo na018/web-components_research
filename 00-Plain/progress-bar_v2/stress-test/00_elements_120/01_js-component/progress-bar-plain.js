@@ -68,7 +68,7 @@ class ProgressBar {
                 width: ${this._complete}%;
         `);
 
-       /* this._barInner.style.animationDelay = Math.random() + 's';
+        this._barInner.style.animationDelay = Math.random() + 's';
 
         // append global styling, keyframes cant be added to element
         ProgressBar.insertStyleSheetRule(
@@ -83,7 +83,7 @@ class ProgressBar {
                          background-position: 0% 50%
                      }
              }`
-        )*/
+        )
         renderArr.push(window.performance.now()-start)
     }
 

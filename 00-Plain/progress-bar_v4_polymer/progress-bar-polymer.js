@@ -11,7 +11,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 class ProgressBarPolymer extends PolymerElement {
   constructor() {
     super();
-    this.animationDelay = Math.random() * Math.random() * 10
+    this.animationDelay = Math.random()
   }
   static get template() {
     return html`
@@ -69,4 +69,4 @@ class ProgressBarPolymer extends PolymerElement {
   }
 }
 
-window.customElements.define('progress-bar-polymer', ProgressBarPolymer);
+window.customElements.define('progress-bar', ProgressBarPolymer);
