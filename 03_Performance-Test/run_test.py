@@ -38,16 +38,13 @@ def check_performance(port=8000, sleep=2, page_calls=100, ptest=False,
 	f.close()
 	print('🥳  🎉 🍾 Yay, successfully created "'+ local_path + '/' + foldername + '/BodyRendering.json"' )
 	
-	if ptest:
-		f = open(path + "/Performance.json","w")
-		f.write(result_performance)
-		f.close()
-		print('🥳  🎉 🍾 Yay, successfully created "'+ local_path + '/' + foldername + '"/Performance.json"' )
 		
 
-foldernames = ['00-global-styling', '01-js-component', '02-webcomponent', '03-angular', '04-polymer', '05-vue']
+#foldernames = ['00-global-styling', '01-js-component', '02-webcomponent', '03-angular', '04-polymer', '05-vue']
+#foldernames = ['03-angular', '04-polymer', '05-vue']
+foldernames = ['05-vue']
 
-[check_performance(page_calls=100, foldername=foldernames[i], port=8000+i) for i in range(6)]
+[check_performance(page_calls=100, foldername=foldernames[i] + '/plain', port=8005+i) for i in range(1)]
 	
 
 	
