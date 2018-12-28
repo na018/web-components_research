@@ -40,11 +40,9 @@ def check_performance(port=8000, sleep=2, page_calls=100, ptest=False,
 	
 		
 
-#foldernames = ['00-global-styling', '01-js-component', '02-webcomponent', '03-angular', '04-polymer', '05-vue']
-#foldernames = ['03-angular', '04-polymer', '05-vue']
-foldernames = ['05-vue']
+foldernames = ['00-global-styling', '01-js-component', '02-webcomponent', '03-angular/plain', '04-polymer/plain', '05-vue/plain']
 
-[check_performance(page_calls=100, foldername=foldernames[i] + '/plain', port=8005+i) for i in range(1)]
+[check_performance(page_calls=100, foldername=foldernames[i], port=8000+i) for i in range(6)]
 	
 
 	
