@@ -9,7 +9,6 @@
         }
         .pa-1 { padding: 5px;}
     </style>
-    <script src="progress-bar-plain.js"></script>
 </head>
 <body>
 <script>console.time('body rendering')</script>
@@ -147,6 +146,7 @@
 <div class="progress-bar-parent pa-1"></div>
 <div class="progress-bar-parent pa-1"></div>
 
+<script src="progress-bar-plain.js"></script>
 <script>
     (function(){
         const bar_1 = new ProgressBar(document.querySelector('#progress-bar-1'));
@@ -168,10 +168,8 @@
                 console.log(ProgressBar.performance)
             }
         }, 100);
-        console.timeEnd('body rendering')
-        console.log(ProgressBar.performance)
     })()
-
 </script>
+<script>console.timeEnd('body rendering')</script>
 </body>
 </html>

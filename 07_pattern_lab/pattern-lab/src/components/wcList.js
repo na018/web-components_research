@@ -46,5 +46,22 @@ export default {
                 ]
             }
         ]
+    },
+    'hello-world': {
+        id: 'hello-world',
+        name: 'Hello World',
+        type: 'Molecule',
+        properties: [
+            {
+                name: 'text',
+                type: 'String',
+                default: 'Hello World',
+                custom: 'Hello World'
+            }
+        ],
+        content: [],
+        contentTypes: []
     }
+
 }
+/* Live Template with elem-n-j */

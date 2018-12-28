@@ -2,7 +2,8 @@
   "name": "progress-bar-polymer",
   "main": "progress-bar-polymer.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",

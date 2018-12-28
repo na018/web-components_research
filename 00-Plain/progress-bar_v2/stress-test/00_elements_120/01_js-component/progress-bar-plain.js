@@ -24,7 +24,6 @@ class ProgressBar {
         const start=window.performance.now()
 
         this._complete = val;
-        // this.renderTemplate(val) re-rendered leads to flickering
         this._barInner.style.width = this._complete + '%';
         this._barInner.textContent = this._complete + '%';
 

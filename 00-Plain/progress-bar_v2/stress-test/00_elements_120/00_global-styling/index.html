@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+<script>console.time('body rendering')</script>
     <h1>JS Components - Global Styling - Stress Test (120)</h1>
     <div id="progress-bar-1" class="pa-1"></div>
     <div id="progress-bar-2" class="pa-1"></div>
@@ -142,20 +143,13 @@
     <div class="progress-bar-parent pa-1"></div>
     <div class="progress-bar-parent pa-1"></div>
     <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
-    <div class="progress-bar-parent pa-1"></div>
+
 
 <script src="progress-bar-plain.js"></script>
 <script>
     (function () {
-        console.log('start')
         const bar_1 = new ProgressBar(document.querySelector('#progress-bar-1'));
         new ProgressBar(document.querySelector('#progress-bar-2'), 10);
-        console.log(bar_1)
 
         const progressBars = document.querySelectorAll('.progress-bar-parent');
         Array.prototype.forEach.call(progressBars, (bar, i) => {
@@ -172,10 +166,12 @@
             } else {
                 bar_1.complete = 90
                 clearInterval(progressInterval);
+                console.log(ProgressBar.performance)
             }
         }, 100);
     })()
 
 </script>
+<script>console.timeEnd('body rendering')</script>
 </body>
 </html>
