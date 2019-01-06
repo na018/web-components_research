@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Web components Plain Example - Stress Test (20)</title>
+    <title>Web components Plain Example - Stress Test (120)</title>
     <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
     <style>
         body .progress-bar {
@@ -155,10 +155,10 @@
         let progressInterval = setInterval(() => {
             if(complete === 5) {
                 let pb = JSON.parse(localStorage.getItem('bodyRendering'))
-                if(pb && pb.arr)
-                    pb.arr.push(parseFloat(performance.now()) - parseFloat(bodyRendering))
+                if(pb)
+                    pb.push(parseFloat(performance.now()) - parseFloat(bodyRendering))
                 else
-                    pb = {arr: [parseFloat(performance.now()) - parseFloat(bodyRendering)]}
+                    pb =  [parseFloat(performance.now()) - parseFloat(bodyRendering)]
 
                 localStorage.setItem('bodyRendering', JSON.stringify(pb))
             }
