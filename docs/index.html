@@ -13146,15 +13146,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Web-Component-Performance-Testing">Web Component Performance Testing<a class="anchor-link" href="#Web-Component-Performance-Testing">&#182;</a></h1><blockquote><p>In the previous chapters I went with you through the geneneration of components on web sites.
+<h1 id="Web-Component-Performance-Testing">Web Component Performance Testing<a class="anchor-link" href="#Web-Component-Performance-Testing">&#182;</a></h1><blockquote><p>In the previous chapters I went with you through the generation of components on web sites.
 We took a look at the different possibilities of creating components on the web:</p>
 <ol>
-<li><strong>The traditional component</strong> with some markup that get's it's styling from some globally defined css classes<br>
+<li><strong>The traditional component</strong> with some markup that gets it's styling from some globally defined CSS classes<br>
 behaving according to some globally defined JavaScript</li>
 <li><strong>The JavaScript class</strong>, which directly binds the appearance to the markup</li>
-<li><strong>The web componenet</strong>, that encloses markup, stlying and behaviour</li>
+<li><strong>The web component</strong>, that encloses markup, styling and behavior</li>
 </ol>
-<p>Furthermore we took a look at three today very popular frameworks/ libraries, which facilitate the lives of web developers:</p>
+<p>Furthermore, we took a look at three today very popular frameworks/ libraries, which facilitate the lives of web developers:</p>
 <ul>
 <li>We created web components with the help of <strong>Angular, Vue and Polymer</strong></li>
 </ul>
@@ -13184,7 +13184,7 @@ Will the effect be eliminated then?</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>First we need to start the servers of all the applications in a different terminal windows</p>
+<p>First, we need to start the servers of all the applications in different terminal windows</p>
 <ul>
 <li>Traditional component: <code>cd 03_Performance-Test/webcomponents/00_progress-bar/00_global-styling &amp;&amp; python3 ./server.py</code></li>
 <li>JavaScript component: <code>cd 03_Performance-Test/webcomponents/00_progress-bar/01_js-component &amp;&amp; python3 ./server.py</code></li>
@@ -13201,11 +13201,11 @@ Will the effect be eliminated then?</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For measuring how long the html page would take until it is rendered including the components we will use <code>performance.now()</code>.<br>
-At the beginning of our HTML body we will start the timer <code>bodyRendering</code> and stop the timer in the first iteration round of our component complete attribute change.</p>
+At the beginning of our HTML body we will start the timer <code>bodyRendering</code> and stop the timer in the first iteration round of our component <code>complete</code> attribute change.</p>
 <p>We do this here, and not just at the end of the body, to be sure, that the components were rendered already.<br>
 Otherwise it could be that however our body completed rendering, the JavaScript responsible for rendering the components was not executed yet. Which would leave us with wrong test results.</p>
-<p>Furthermore we will save our time measurement in the LocalStorage of the browser.<br>
-We do this for not loosing the information of the time measurement after a new session aka a page reload.</p>
+<p>Furthermore, we will save our time measurement in the LocalStorage of the browser.<br>
+We do this for not losing the information of the time measurement after a new session or rather a page reload.</p>
 
 </div>
 </div>
@@ -13260,7 +13260,7 @@ We do this for not loosing the information of the time measurement after a new s
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After reloaded the web site 5 times, the JSON <em>(JavaScript Object Notation)</em> in the LocalStorage will look somethink like this:</p>
+<p>After reloading 5 times, the JSON <em>(JavaScript Object Notation)</em> in the LocalStorage will look something like this:</p>
 <div class="highlight"><pre><span></span><span class="p">[</span>
     <span class="mf">148.40000000003783</span><span class="p">,</span>
     <span class="mf">149.19999999983702</span><span class="p">,</span>
@@ -13281,14 +13281,14 @@ We do this for not loosing the information of the time measurement after a new s
 However there is a lot of stuff that may influence our performance measurements eg.:</p>
 <ul>
 <li>current network capacity utilization</li>
-<li>background tasks of our macbook</li>
+<li>background tasks running on our machine</li>
 </ul>
 <p>For getting decent test results we need to call all the applications multiple times and then compare the sum of our time measurements.<br>
 Since we are programmers and love automation, <strong>Selenium</strong> will do the job for us.</p>
 <p>Let's write a Python script and define the function <code>check_performance()</code>.<br>
 This function will automatically open the different applications in a chrome web browser for a certain amount of times.<br>
-<em>(I desided to go with 100 page calls)</em></p>
-<p>Furthermore let's save the result in the LocalStorage into a <code>JSON</code> file: <code>bodyRendering.json</code>.</p>
+<em>(I decided to go with 100 page calls)</em></p>
+<p>Furthermore, let's save the result in the LocalStorage into a <code>JSON</code> file: <code>bodyRendering.json</code>.</p>
 
 </div>
 </div>
@@ -13316,7 +13316,7 @@ This function will automatically open the different applications in a chrome web
 <span class="sd">	&quot;&quot;&quot;</span>
     
     <span class="c1"># first we open a chrome browser window with the help of Selinium&#39;s webdriver</span>
-    <span class="c1"># we wait 30 mili seconds for the browser window to open</span>
+    <span class="c1"># we wait 30 miliseconds for the browser window to open</span>
 	<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
 	<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">chromedriver</span><span class="p">)</span>
 	<span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -13603,19 +13603,19 @@ This function will automatically open the different applications in a chrome web
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>From the pandas dataframe description, one can already analyze the differences.</p>
+<p>From the pandas data frame description, one can already analyze the differences.</p>
 <p>Let's have a look at the calculated mean values:</p>
 <ul>
-<li>polymer and global_styling have the lowest calculated mean value, which is close to 100ms</li>
+<li>Polymer and global_styling have the lowest calculated mean value, which is close to 100ms</li>
 <li>global_styling/polymer to the js_component has the same distance in their mean value<br>
 as the js_component to the web_component, which is about 10ms</li>
-<li>from the web_component to vue it's about twice the difference<br>
+<li>from the web_component to Vue it's about twice the difference<br>
 compared to the distance between the web_component and js_component,<br>
 which is about 20ms</li>
-<li>from vue to angular its as well about 20ms</li>
+<li>from Vue to Angular it's as well about 20ms</li>
 </ul>
 <p>Which is very interesting here is the huge standard deviation.</p>
-<p>Let's further analyze our dataframe by visualizing it with a line graph:</p>
+<p>Let's further analyze our data frame by visualizing it with a line graph:</p>
 
 </div>
 </div>
@@ -13683,9 +13683,9 @@ which is about 20ms</li>
 <li>it's the first call after we opened the chrome browser with <em>Selenium</em>.</li>
 </ul>
 <blockquote><p><strong>Where could this result from?</strong><br>
-With the chrome web browser Google tries to outplay the all the other web browsers such as Firefox, Edge, Opera or Safari, just naming a view. <a href="https://computer.howstuffworks.com/google-chrome-browser6.htm">Read More</a><br>
+With the chrome web browser Google tries to outplay all the other web browsers such as Firefox, Edge, Opera or Safari, just naming a view. <a href="https://computer.howstuffworks.com/google-chrome-browser6.htm">Read More</a><br>
 When refreshing the page, the browser engine tries to show the user requested website as fast as possible.
-This optimization leads to the first request being much slower then the following page requests.</p>
+This optimization leads to the first request being much slower than the following page requests.</p>
 </blockquote>
 <p>The interesting question now is, whether we would get different results, if we opened and closed the browser for each performance test.</p>
 <p>Let's try this out by redefining our performance function:</p>
@@ -13761,8 +13761,8 @@ This optimization leads to the first request being much slower then the followin
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To run our newly defined function will take longer then the multiple page get function, because the browser will be restarted each time.</p>
-<p>It will take about one hour, where you shouldn't touch the computer for not irretating the test results</p>
+<p>To run our newly defined function will take longer than the multiple page get function, because the browser will be restarted each time.</p>
+<p>It will take about one hour, where you shouldn't touch the computer for not irritating the test results.</p>
 
 </div>
 </div>
@@ -13831,7 +13831,7 @@ This optimization leads to the first request being much slower then the followin
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's take a look at the resulting JSON files and store them in new dataframes.</p>
+<p>Let's take a look at the resulting JSON files and store them in new data frames:</p>
 
 </div>
 </div>
@@ -14109,7 +14109,8 @@ This optimization leads to the first request being much slower then the followin
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">regulate_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 	<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 	<span class="n">std</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-    <span class="c1"># outliers that are outside the [mean-std, mean+std] area </span>
+    <span class="c1"># replace outliers that are outside the [mean-std, mean+std] area </span>
+    <span class="c1"># with mean values</span>
 	<span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">std</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 	<span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">std</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 	<span class="k">return</span> <span class="n">df</span>
@@ -14336,8 +14337,8 @@ This optimization leads to the first request being much slower then the followin
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's compare the graph of new boot to the page refresh performance measurement.</p>
-<p>But before, let's flatten down the measurements for the page refresh as well.</p>
+<p>Let's compare the graph of <code>new boot</code> to the <code>page refresh</code> performance measurement.</p>
+<p>But before, let's flatten down the measurements for the <code>page refresh</code> as well.</p>
 
 </div>
 </div>
@@ -14556,21 +14557,21 @@ This optimization leads to the first request being much slower then the followin
 <p><strong>Comparison Observations</strong>:</p>
 <ul>
 <li>in g2 the lines are translated upwards, which means the performance is generally slower</li>
-<li>in g1 and g2 for the js_component, global_styling component, web_component and polymer component both graphs show almost the same distance for the different components, meaning they show comparable results<ul>
-<li>however in g2 the js_component and the web_component seem to be closer together</li>
+<li>in g1 and g2 for the js_component, global_styling component, web_component and Polymer component both graphs show almost the same distance for the different components, meaning they show comparable results<ul>
+<li>however, in g2 the js_component and the web_component seem to be closer together</li>
 </ul>
 </li>
 <li>in g2 the web_component displays a bigger distance to the vue component then in g1 <em>(about twice as much)</em></li>
-<li>futhermore in g2 the distance from the vue component to the angular component is much higher *(almost 4 times more)</li>
+<li>futhermore in g2 the distance from the Vue component to the Angular component is much higher *(almost 4 times more)</li>
 </ul>
 <p>Here we see that we get quite different results for both measurement types.</p>
-<p>So however the time duration of the browser reboot measurement takes much longer then the page refresh method, we defininetely can not just go with the page refresh method and assume reliable results, which would only differ in some translation in the y-Axis.<br>
-This leads to the fact, that we have to abstract conclusions from the page reboot measuremnt analysis.</p>
+<p>So however the time duration of the browser reboot measurement takes much longer than the page refresh method, we definitely cannot just go with the page refresh method and assume reliable results, which would only differ in some translation in the y-Axis.<br>
+This leads to the fact, that we have to abstract conclusions from the page reboot measurement analysis.</p>
 <p><strong>Conclusions <em>(page reboot method)</em></strong></p>
 <ul>
 <li>regarding frameworks, Polymer is the by far best performing one. The polymer component is even on one level with the global_styling component</li>
 <li>Angular shows the by far slowest results</li>
-<li>Vue is in the middle of our performance analysis regarding frameworks, however it is about five percent slower then the web component</li>
+<li>Vue is in the middle of our performance analysis regarding frameworks, however it is about five percent slower than the web component</li>
 </ul>
 
 </div>
@@ -14580,7 +14581,7 @@ This leads to the fact, that we have to abstract conclusions from the page reboo
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With our performance analysis we measured the performance of our web components including the frameworks.<br>
-However most of the times a website will not consist of one web component only. So it is important to test, how the web components generated by the frameworks perform not measuring the framework addition.</p>
+However most of the times a website will not consist of one web component only. So, it is important to test, how the web components, generated by the frameworks, perform not measuring the framework addition.</p>
 <p>We will do this by placing the framework specific scripts into the header region.<br>
 So we can be sure, they will not add to the final web component measurement, which we do in the body.</p>
 <p>In the following we will do these two operations:</p>
@@ -14595,7 +14596,7 @@ So we can be sure, they will not add to the final web component measurement, whi
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>For being able to distinguish between the plain framework generated web components and the full fledged component, I create a new folder <code>plain</code> inside each framework component.</p>
+<blockquote><p>For being able to distinguish between the plain framework generated web components and the full-fledged component, I create a new folder <code>plain</code> inside each framework component.</p>
 </blockquote>
 <p>This is how the <code>index.html</code> files are adjusted:</p>
 
@@ -14906,12 +14907,12 @@ So we can be sure, they will not add to the final web component measurement, whi
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The standard deviation is pretty low, which allows us to compare the mean values more reliably.</p>
 <ul>
-<li>We see that the angular web component and vue web component get closer to the plain web component.</li>
-<li>Furthermore the angular web component has almost the same mean value as the vue web component.<ul>
-<li>very interesting here is, that the angular web component is even very slightly better in performance then the vue web component</li>
+<li>We see that the Angular web component and Vue web component get closer to the plain web component.</li>
+<li>Furthermore the Angular web component has almost the same mean value as the Vue web component.<ul>
+<li>very interesting here is, that the angular web component is even very slightly better in performance than the Vue web component</li>
 </ul>
 </li>
-<li>The polymer component by far competes best here.</li>
+<li>The Polymer component by far competes best here.</li>
 </ul>
 <p>Let's take a look at the line graph:</p>
 
