@@ -20,9 +20,9 @@ yarn add @webcomponents/webcomponentsjs
 ```
 - in `index.html`
 ```html
-<!- Load polyfills-->
+<!-- Load polyfills-->
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-<!- import progress-bar-polymer module -->
+<!-- import progress-bar-polymer module -->
 <script type="module" src="static/progress-bar-polymer.js"></script>
 ```
 - in `static/progress-bar-polymer.js` import and use PolymerElement:
