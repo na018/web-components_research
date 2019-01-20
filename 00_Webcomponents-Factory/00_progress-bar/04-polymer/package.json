@@ -1,0 +1,13 @@
+{
+  "name": "polymer_progress-bar",
+  "version": "1.0.0",
+  "description": "'This project demonstrates the creation of a prgogress-bar web component with Polymer'",
+  "author": "Nadin-Katrin Apel",
+  "license": "MIT",
+  "private": false,
+  "flat": true,
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.13",
+    "@webcomponents/webcomponentsjs": "^2.2.4"
+  }
+}
