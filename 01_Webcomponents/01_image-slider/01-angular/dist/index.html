@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ImageSlider Angular Web Component</title>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="/static/runtime.js"></script>
+    <script type="text/javascript" src="/static/polyfills.js"></script>
+    <script type="text/javascript" src="/static/scripts.js"></script>
+</head>
+<body>
+<script>let bodyRendering = performance.now()</script>
+<h1>Web Component - Angular: ImageSlider</h1>
+<div style="height: 400px; max-width: 700px;margin:auto;">
+    <image-slider selectedindex="0">
+        <img src="/static/assets/img/pic-1.jpg" alt>
+        <img src="/static/assets/img/pic-2.jpeg" alt>
+        <img src="/static/assets/img/pic-3.jpeg" alt>
+        <img src="/static/assets/img/pic-4.jpeg" alt>
+        <img src="/static/assets/img/pic-5.jpeg" alt>
+        <img src="/static/assets/img/pic-6.jpeg" alt>
+        <img src="/static/assets/img/pic-1.jpg" alt>
+        <img src="/static/assets/img/pic-3.jpeg" alt>
+        <img src="/static/assets/img/pic-5.jpeg" alt>
+    </image-slider>
+</div>
+
+<script type="text/javascript" src="/static/main.js"></script>
+</body>
+<script>
+    (function () {
+        const ImageSlider = document.querySelector('image-slider');
+
+        let index = 0;
+
+        let progressInterval = setInterval(() => {
+
+            if (index < 3) {
+                ImageSlider.selectedIndex = index;
+            } else {
+                clearInterval(progressInterval);
+                let pb = JSON.parse(localStorage.getItem('bodyRendering'))
+                if (pb)
+                    pb.push(parseFloat(performance.now()) - parseFloat(bodyRendering))
+                else
+                    pb = [parseFloat(performance.now()) - parseFloat(bodyRendering)]
+
+                localStorage.setItem('bod' +
+                    'yRendering', JSON.stringify(pb))
+
+            }
+            index += 1;
+        }, 1000);
+    })();
+</script>
+</body>
+</html>
