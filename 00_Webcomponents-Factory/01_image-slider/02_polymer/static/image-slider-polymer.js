@@ -1,5 +1,5 @@
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
+import {PolymerElement, html} from './node_modules/@polymer/polymer/polymer-element.js';
+import './node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
 
 // Define the element's API using an ES2015 class
 class ImageSliderComponent extends PolymerElement {
@@ -51,7 +51,8 @@ class ImageSliderComponent extends PolymerElement {
                 type: Number,
                 value: 0,
                 notify: true,                          // notify host element on change (document.querySelector('image-slider').selectedIndex will not update - only via getAttribute)
-                reflectToAttribute: true               // synchronize with corresponding HTML attribute
+                reflectToAttribute: true,               // synchronize with corresponding HTML attribute
+                observer: '_selectedChanged'
             },
             _slides: {
                 type: Array,
@@ -73,6 +74,16 @@ class ImageSliderComponent extends PolymerElement {
                 type: Array,
                 value: []
             }
+        }
+    }
+    _selectedChanged(newValue, oldValue) {
+        if(oldValue>=0) {
+            if(this._dots.length === 0) {
+                this._dots = this.shadowRoot.querySelectorAll('.controls span')
+            }
+            this._dots[oldValue].classList.remove('selected')
+            this._dots[newValue].classList.add('selected')
+            this._left = -this.selectedindex * 100
         }
     }
 
@@ -119,14 +130,8 @@ class ImageSliderComponent extends PolymerElement {
      * @param newIndex
      * @private
      */
-    _changeSlide(e, newIndex) {
-        if(this._dots.length === 0) {
-            this._dots = this.shadowRoot.querySelectorAll('.controls span')
-        }
-        this._dots[this.selectedindex].classList.remove('selected')
-        this.selectedindex = e ? parseInt(e.currentTarget.dataset.index) : this.selectedindex+newIndex;
-        this._dots[this.selectedindex].classList.add('selected')
-        this._left = -this.selectedindex * 100
+    _changeSlide(e) {
+        this.selectedindex = parseInt(e.currentTarget.dataset.index)
     }
     
 
@@ -138,7 +143,7 @@ class ImageSliderComponent extends PolymerElement {
     _slide(e) {
         const i = parseInt(e.currentTarget.getAttribute('data-index$'))
         if((this.selectedindex>0 || this.selectedindex === 0 && i > 0 )&& this.selectedindex<this._slides.length-1){
-            this._changeSlide(null, i)
+            this.selectedindex += i
         }
     }
 

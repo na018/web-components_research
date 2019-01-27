@@ -49,34 +49,37 @@ class ImageSlider extends HTMLElement {
                     control.classList.add('selected')
                 }
                 control.innerText = counter
-                control.addEventListener('click', (me) => {
-                 this.selectedIndex = control.innerText
-                })
-                counter ++
+                control.addEventListener('click', this._selectIndex.bind(this,this,control.innerText))
                 controls.appendChild(control)
+                counter ++
             }
         })
         this.shadow.querySelector('.controls').appendChild(controls)
         fig.style.width = amount * 100 + '%';
 
-        this.shadow.querySelector('.arrow-right').addEventListener('click', this._slide.bind(null,this, 1))
-        this.shadow.querySelector('.arrow-left').addEventListener('click', ()=> {
-            if(this.selectedIndex > 0){
-                this.selectedIndex -=1
-            }
-
-        })
+        this.shadow.querySelector('.arrow-right').addEventListener('click', this._slide.bind(this,this, 1))
+        this.shadow.querySelector('.arrow-left').addEventListener('click', this._slide.bind(this,this, -1))
     }
-    _slide(elem, i, ev) {
-        console.log(this)
-        if(this.selectedIndex < this._dots.length -1){
+
+    _slide(elem, i) {
+        if(this.selectedIndex < this._dots.length -1 && this.selectedIndex > 0){
             this.selectedIndex +=i
         }
     }
-
+    _selectIndex(elem, newIndex) {
+        this.selectedIndex = newIndex
+    }
+    /**
+     * `disconnectedCallback()` fires when the element is removed from the DOM.
+     * It's a good place to do clean up work like releasing references and
+     * removing event listeners.
+     */
     disconnectedCallback() {
-        this.removeEventListener('keydown', this._onKeyDown);
-        this.removeEventListener('click', this._onClick);
+        this.shadow.querySelector('.arrow-right').removeEventListener('click', this._slide)
+        this.shadow.querySelector('.arrow-left').removeEventListener('click', this._slide)
+        Array.prototype.forEach.call(this.shadow.querySelectorAll('.controls span'), control => {
+            control.removeEventListener('click', this._selectIndex)
+        })
     }
 
 

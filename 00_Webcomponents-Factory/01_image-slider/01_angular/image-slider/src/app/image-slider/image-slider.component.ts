@@ -1,6 +1,6 @@
 import {
   AfterContentChecked,
-  Component,
+  Component, DoCheck,
   ElementRef,
   Input,
   ViewChild,
@@ -14,12 +14,12 @@ import {
       <div>
         <figure #imageContainer
                 [style.width]="(slides.length+1)*100 + '%'"
-                [style.left]="-selectedIndex*100+'%'"
+                [style.left]="-sI*100+'%'"
         >
           <ng-content></ng-content>
         </figure>
         <div class="controls">
-          <span *ngFor="let slide of slides; let i = index;" [class.selected]="i===selectedIndex"
+          <span *ngFor="let slide of slides; let i = index;" [class.selected]="i===sI"
                 (click)="changeSlide(i)">{{i}}</span>
         </div>
       </div>
@@ -30,10 +30,12 @@ import {
   styles: [`:host>div{padding:0 40px;position:relative;display:inline-block}:host>div .arrow-left{border-top:1px solid #afb1b2;border-left:1px solid #afb1b2;width:30px;height:30px;transform:rotate(-45deg);position:absolute;top:45%;left:0;cursor:pointer}:host>div .arrow-right{border-top:1px solid #afb1b2;border-right:1px solid #afb1b2;width:30px;height:30px;transform:rotate(45deg);position:absolute;top:45%;right:0;cursor:pointer}:host>div>div{overflow-x:hidden}:host>div>div figure{min-height:200px;background:grey;transition:.7s ease;position:relative;width:600%;margin:0;left:0;text-align:left;font-size:0;animation:25s slidy infinite}:host>div>div figure ::slotted(img){width:20%;float:left;cursor:pointer; height:400px;}:host>div>div figure ::slotted(img:hover){-webkit-transform:scale(1.03);-ms-transform:scale(1.03);transform:scale(1.03);transition:.4s;cursor:pointer}:host>div>div .controls{text-align:center}:host>div>div .controls span:hover{background: #9e0317;}:host>div>div .controls span{border-radius: 50%;width:.5rem;height:.5rem;padding:0;margin:1.5rem .375rem 0;background-color:#c8cacb;color:transparent;display:inline-block;cursor:pointer}:host>div>div .controls span.selected{background-color:#d5001c}`],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class ImageSliderComponent implements AfterContentChecked {
+export class ImageSliderComponent implements AfterContentChecked, DoCheck {
   @ViewChild('imageContainer') content: ElementRef;
   @Input() selectedIndex = 0;
   slides =  [];
+  sI = this.selectedIndex;
+  innerChange = false;
 
   ngAfterContentChecked(): void {
     this.slides = this.content.nativeElement.children
@@ -44,14 +46,24 @@ export class ImageSliderComponent implements AfterContentChecked {
       slide.style.cursor = 'pointer';
     }
   }
+  ngDoCheck() {
+    if(this.innerChange) {
+      this.selectedIndex = this.sI;
+      this.innerChange = false;
+    } else {
+      this.sI = this.selectedIndex;
+    }
+  }
 
   changeSlide(i: number) {
-    this.selectedIndex = i;
+    this.sI = i;
+    this.innerChange = true
   }
 
   slide(i: number) {
-    if((this.selectedIndex>0 || this.selectedIndex === 0 && i > 0 )&& this.selectedIndex<this.slides.length-1){
-      this.selectedIndex += i;
+    if((this.sI>0 || this.sI === 0 && i > 0 )&& this.sI<this.slides.length-1){
+      this.sI += i;
+      this.innerChange = true;
     }
   }
 }
