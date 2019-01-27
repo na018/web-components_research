@@ -3,18 +3,18 @@ import {html, PolymerElement} from '../node_modules/@polymer/polymer/polymer-ele
 
 /**
  * `progress-bar-polymer`
- * 
+ *
  * Define the element's API using an ES2015 class
  * @customElement
  * @polymer
  */
 class ProgressBarPolymer extends PolymerElement {
-  constructor() {
-    super();
-    this.animationDelay = Math.random()
-  }
-  static get template() {
-    return html`
+    constructor() {
+        super();
+        this.animationDelay = Math.random()
+    }
+    static get template() {
+        return html`
          <style>
             .progress-bar {
                 width: 100%;
@@ -56,17 +56,17 @@ class ProgressBarPolymer extends PolymerElement {
             <div class="progress-bar-inner" style="width: [[complete]]%;  animation-delay: {{animationDelay}}s">[[complete]]</div>
         </div>
     `;
-  }
-  static get properties() {
-    return {
-        complete: {
-            type: Number,
-            value: 0,
-            /* notify: true,
-             reflectToAttribute: true*/
-        },
-    };
-  }
+    }
+    static get properties() {
+        return {
+            complete: {
+                type: Number,
+                value: 0,
+                /* notify: true,
+                 reflectToAttribute: true*/
+            },
+        };
+    }
 }
 
 window.customElements.define('progress-bar', ProgressBarPolymer);

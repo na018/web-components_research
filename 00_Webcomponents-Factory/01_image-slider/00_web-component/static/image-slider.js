@@ -29,7 +29,7 @@ class ImageSlider extends HTMLElement {
                 }
         }
     }
-
+// lazy properties
     connectedCallback() {
         const slot = this.shadow.querySelector('slot');
         const fig = this.shadow.querySelector('figure');
@@ -49,15 +49,8 @@ class ImageSlider extends HTMLElement {
                     control.classList.add('selected')
                 }
                 control.innerText = counter
-                control.addEventListener('click', () => {
-                    fig.style.left = (-parseInt(control.innerText) * 100)  + '%';
-                    if(dots[selectedIndex]) {
-                        dots[selectedIndex].classList.remove('selected')
-                    } else {
-                        controls.querySelector('span').classList.remove('selected')
-                    }
-                    control.classList.add('selected')
-                    dots[selectedIndex] = control
+                control.addEventListener('click', (me) => {
+                 this.selectedIndex = control.innerText
                 })
                 counter ++
                 controls.appendChild(control)
@@ -66,11 +59,7 @@ class ImageSlider extends HTMLElement {
         this.shadow.querySelector('.controls').appendChild(controls)
         fig.style.width = amount * 100 + '%';
 
-        this.shadow.querySelector('.arrow-right').addEventListener('click', ()=> {
-            if(this.selectedIndex < this._dots.length -1){
-                this.selectedIndex +=1
-            }
-        })
+        this.shadow.querySelector('.arrow-right').addEventListener('click', this._slide.bind(null,this, 1))
         this.shadow.querySelector('.arrow-left').addEventListener('click', ()=> {
             if(this.selectedIndex > 0){
                 this.selectedIndex -=1
@@ -78,7 +67,17 @@ class ImageSlider extends HTMLElement {
 
         })
     }
+    _slide(elem, i, ev) {
+        console.log(this)
+        if(this.selectedIndex < this._dots.length -1){
+            this.selectedIndex +=i
+        }
+    }
 
+    disconnectedCallback() {
+        this.removeEventListener('keydown', this._onKeyDown);
+        this.removeEventListener('click', this._onClick);
+    }
 
 
     generateTemplate() {

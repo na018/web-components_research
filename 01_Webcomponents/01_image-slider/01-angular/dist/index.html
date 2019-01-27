@@ -25,7 +25,6 @@
 </div>
 
 <script type="text/javascript" src="/static/main.js"></script>
-</body>
 <script>
     (function () {
         const ImageSlider = document.querySelector('image-slider');
@@ -33,7 +32,7 @@
         let index = 0;
 
         let progressInterval = setInterval(() => {
-
+            index += 1;
             if (index < 3) {
                 ImageSlider.selectedIndex = index;
             } else {
@@ -48,7 +47,6 @@
                     'yRendering', JSON.stringify(pb))
 
             }
-            index += 1;
         }, 1000);
     })();
 </script>

@@ -17,6 +17,9 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 ```
 yarn add @polymer/polymer@next
 yarn add @webcomponents/webcomponentsjs
+
+touch index.html
+mkdir static && touch static/image-slider-polymer.js
 ```
 - in `index.html`
 ```html
