@@ -33,9 +33,6 @@
             },
         },
         watch: {
-            sI(newValue) {
-                this.$emit('updateSelectedIndex', newValue);
-            },
             selectedindex(nweval) {
                 this.sI = this.selectedindex
             }
@@ -55,10 +52,10 @@
         },
         methods: {
             changeSlide(i) {
-                this.sI = i
+                this.$emit('updateSelectedIndex', i);
             },
             slide(i) {
-                this.sI += i
+                this.$emit('updateSelectedIndex', this.sI+i);
             },
 
         },

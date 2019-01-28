@@ -54,6 +54,10 @@ class ImageSliderComponent extends PolymerElement {
                 reflectToAttribute: true,               // synchronize with corresponding HTML attribute
                 observer: '_selectedChanged'
             },
+            _sI: {
+                type: Number,
+                value: 0
+            },
             _slides: {
                 type: Array,
                 value: []
@@ -78,13 +82,17 @@ class ImageSliderComponent extends PolymerElement {
     }
     _selectedChanged(newValue, oldValue) {
         if(oldValue>=0) {
-            if(this._dots.length === 0) {
-                this._dots = this.shadowRoot.querySelectorAll('.controls span')
-            }
-            this._dots[oldValue].classList.remove('selected')
-            this._dots[newValue].classList.add('selected')
-            this._left = -this.selectedindex * 100
+             this._updateSi(newValue, oldValue)
         }
+    }
+    _updateSi(newValue, oldValue){
+        this._sI = newValue
+        if(this._dots.length === 0) {
+            this._dots = this.shadowRoot.querySelectorAll('.controls span')
+        }
+        this._dots[oldValue].classList.remove('selected')
+        this._dots[newValue].classList.add('selected')
+        this._left = -this._sI * 100
     }
 
     constructor() {
@@ -107,7 +115,7 @@ class ImageSliderComponent extends PolymerElement {
         const imgDomElemns = this.children
         this._figureWidth = (imgDomElemns.length + 1) * 100
         this._slideImgWidth = 100 / (imgDomElemns.length + 1)
-        this._left = -this.selectedindex * 100
+        this._left = -this._sI * 100
         for (let i = 0; i < imgDomElemns.length; i++) {
             imgDomElemns[i].style.width = this._slideImgWidth + '%';
             this._slides.push(i)
@@ -121,7 +129,7 @@ class ImageSliderComponent extends PolymerElement {
      * @private
      */
     _isSelected(index) {
-        return this.selectedindex === index ? 'selected' : '';
+        return this._sI === index ? 'selected' : '';
     }
 
     /**
@@ -131,7 +139,7 @@ class ImageSliderComponent extends PolymerElement {
      * @private
      */
     _changeSlide(e) {
-        this.selectedindex = parseInt(e.currentTarget.dataset.index)
+        this.dispatchEvent(new CustomEvent('updateSelectedIndex', {detail: e.currentTarget.dataset.index}));
     }
     
 
@@ -142,8 +150,8 @@ class ImageSliderComponent extends PolymerElement {
      */
     _slide(e) {
         const i = parseInt(e.currentTarget.getAttribute('data-index$'))
-        if((this.selectedindex>0 || this.selectedindex === 0 && i > 0 )&& this.selectedindex<this._slides.length-1){
-            this.selectedindex += i
+        if(i<0 && this._sI>0 || i>0 && this._sI<this._slides.length-1){
+            this.dispatchEvent(new CustomEvent('updateSelectedIndex', {detail: this._sI + i}));
         }
     }
 

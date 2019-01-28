@@ -7,20 +7,19 @@ class ImageSlider extends HTMLElement {
         this.generateTemplate();
         this._fig = this.shadow.querySelector('figure');
     }
-    get selectedIndex() {
+    get selectedindex() {
         return this._selected;
     }
 
-    set selectedIndex(val) {
+    set selectedindex(val) {
         this._selected = val;
-        this.setAttribute('selected-index', val);
     }
     static get observedAttributes() {
-        return ['selected-index'];
+        return ['selectedindex'];
     }
     attributeChangedCallback(name, oldVal, newVal) {
         switch (name) {
-            case 'selected-index':
+            case 'selectedindex':
                 if(oldVal !== newVal && this._dots[parseInt(oldVal)]) {
                     this._dots[parseInt(oldVal)].classList.remove('selected')
                     this._selected = parseInt(newVal, 10) || 0;
@@ -39,13 +38,13 @@ class ImageSlider extends HTMLElement {
         let counter = 0
         let controls = document.createElement('div')
         let dots = this._dots
-        let selectedIndex = this.selectedIndex
+        let selectedindex = this.selectedindex
         slotChildren.forEach((child, i)=> {
             if(child.nodeName === 'IMG') {
                 child.style.width = 100 / amount + '%'
                 let control = document.createElement('span')
                 dots.push(control)
-                if(counter === this.selectedIndex) {
+                if(counter === this.selectedindex) {
                     control.classList.add('selected')
                 }
                 control.innerText = counter
@@ -62,12 +61,13 @@ class ImageSlider extends HTMLElement {
     }
 
     _slide(elem, i) {
-        if(this.selectedIndex < this._dots.length -1 && this.selectedIndex > 0){
-            this.selectedIndex +=i
+        if(i>0 && this.selectedindex < this._dots.length -1 || i<0  && this.selectedindex > 0){
+            this.dispatchEvent(new CustomEvent('updateSelectedIndex', {detail: this.selectedindex+i}))
         }
     }
+
     _selectIndex(elem, newIndex) {
-        this.selectedIndex = newIndex
+        this.dispatchEvent(new CustomEvent('updateSelectedIndex', {detail: newIndex}))
     }
     /**
      * `disconnectedCallback()` fires when the element is removed from the DOM.
