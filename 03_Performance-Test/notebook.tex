@@ -1,0 +1,1335 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Analysis}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k}{import} \PY{n}{print\PYZus{}function}
+        
+        \PY{k+kn}{import} \PY{n+nn}{math}
+        
+        \PY{k+kn}{from} \PY{n+nn}{IPython} \PY{k}{import} \PY{n}{display}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{cm}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{gridspec}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{k+kn}{from} \PY{n+nn}{selenium} \PY{k}{import} \PY{n}{webdriver}
+        \PY{k+kn}{from} \PY{n+nn}{selenium}\PY{n+nn}{.}\PY{n+nn}{webdriver}\PY{n+nn}{.}\PY{n+nn}{common}\PY{n+nn}{.}\PY{n+nn}{keys} \PY{k}{import} \PY{n}{Keys}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        
+        \PY{n}{pd}\PY{o}{.}\PY{n}{options}\PY{o}{.}\PY{n}{display}\PY{o}{.}\PY{n}{max\PYZus{}rows} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{pd}\PY{o}{.}\PY{n}{options}\PY{o}{.}\PY{n}{display}\PY{o}{.}\PY{n}{float\PYZus{}format} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.1f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}
+\end{Verbatim}
+
+
+    \hypertarget{web-component-performance-testing}{%
+\section{Web Component Performance
+Testing}\label{web-component-performance-testing}}
+
+\begin{quote}
+In the previous chapters I went with you through the generation of
+components on web sites. We took a look at the different possibilities
+of creating components on the web: 1. \textbf{The traditional component}
+with some markup that gets it's styling from some globally defined CSS
+classes\\
+behaving according to some globally defined JavaScript 2. \textbf{The
+JavaScript class}, which directly binds the appearance to the markup 3.
+\textbf{The web component}, that encloses markup, styling and behavior
+
+Furthermore, we took a look at three today very popular frameworks/
+libraries, which facilitate the lives of web developers: - We created
+web components with the help of \textbf{Angular, Vue and Polymer}
+\end{quote}
+
+    
+
+    First, we need to start the servers of all the applications in different
+terminal windows - Traditional component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/00\_global-styling\ \&\&\ python3\ ./server.py}
+- JavaScript component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/01\_js-component\ \&\&\ python3\ ./server.py}
+- Web component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/02\_web-component\ \&\&\ python3\ ./server.py}
+- Angular web component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/03-angular\ \&\&\ python3\ ./server.py}
+- Polymer web component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/04-polymer\ \&\&\ python3\ ./server.py}
+- Vue web component:
+\texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/05-vue\ \&\&\ python3\ ./server.py}
+
+    For measuring how long the html page would take until it is rendered
+including the components we will use \texttt{performance.now()}.\\
+At the beginning of our HTML body we will start the timer
+\texttt{bodyRendering} and stop the timer in the first iteration round
+of our component \texttt{complete} attribute change.
+
+We do this here, and not just at the end of the body, to be sure, that
+the components were rendered already.\\
+Otherwise it could be that however our body completed rendering, the
+JavaScript responsible for rendering the components was not executed
+yet. Which would leave us with wrong test results.
+
+Furthermore, we will save our time measurement in the LocalStorage of
+the browser.\\
+We do this for not losing the information of the time measurement after
+a new session or rather a page reload.
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{<!-- ... -->}
+\KeywordTok{<body>}
+    \KeywordTok{<script>let}\NormalTok{ bodyRendering }\OperatorTok{=} \VariableTok{performance}\NormalTok{.}\AttributeTok{now}\NormalTok{()}\KeywordTok{</script>}
+
+    \KeywordTok{<h1>}\NormalTok{Polymer - Stress Test (120)}\KeywordTok{</h1>}
+    \KeywordTok{<progress-bar}\OtherTok{ id=}\StringTok{"progress-bar-1"}\OtherTok{ class=}\StringTok{"pa-1"}\KeywordTok{></progress-bar>}
+    \CommentTok{<!-- ... -->}
+    \CommentTok{<!-- ... -->}
+    \CommentTok{<!-- ... -->}
+    \KeywordTok{<script}\OtherTok{ src=}\StringTok{"static/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"}\KeywordTok{></script>}
+    \KeywordTok{<script}\OtherTok{ type=}\StringTok{"module"}\OtherTok{ src=}\StringTok{"static/progress-bar-polymer.js"}\KeywordTok{></script>}
+
+    \KeywordTok{<script>}
+    \CommentTok{// ...}
+    \CommentTok{// inside our interval}
+        \KeywordTok{let}\NormalTok{ progressInterval }\OperatorTok{=} \AttributeTok{setInterval}\NormalTok{(() }\KeywordTok{=>} \OperatorTok{\{}
+        
+        \CommentTok{// check whether you are in the first iteration round}
+            \ControlFlowTok{if}\NormalTok{(complete }\OperatorTok{===} \DecValTok{5}\NormalTok{) }\OperatorTok{\{}
+        
+                \CommentTok{// calculate the passed time of our body rendering }
+                \CommentTok{// and get the 'bodyRendering' token from LocalStorage}
+                \KeywordTok{let}\NormalTok{ passedTime }\OperatorTok{=} \AttributeTok{parseFloat}\NormalTok{(}\VariableTok{performance}\NormalTok{.}\AttributeTok{now}\NormalTok{()) }\OperatorTok{-} \AttributeTok{parseFloat}\NormalTok{(bodyRendering)}
+                \KeywordTok{let}\NormalTok{ lsBR }\OperatorTok{=} \VariableTok{JSON}\NormalTok{.}\AttributeTok{parse}\NormalTok{(}\VariableTok{localStorage}\NormalTok{.}\AttributeTok{getItem}\NormalTok{(}\StringTok{'bodyRendering'}\NormalTok{))}
+        
+                \CommentTok{// if the token in the LocalStorage exists, append the newly calculated time}
+                \CommentTok{// otherwise create a new object with an array, }
+                \CommentTok{// that has the calculated time as it's initial item}
+                \ControlFlowTok{if}\NormalTok{(lsBR)}
+                    \VariableTok{lsBR}\NormalTok{.}\AttributeTok{push}\NormalTok{(passedTime)}
+                \ControlFlowTok{else}
+\NormalTok{                    lsBR }\OperatorTok{=}\NormalTok{ [passedTime]}
+
+                \VariableTok{localStorage}\NormalTok{.}\AttributeTok{setItem}\NormalTok{(}\StringTok{'bodyRendering'}\OperatorTok{,} \VariableTok{JSON}\NormalTok{.}\AttributeTok{stringify}\NormalTok{(lsBR))}
+            \OperatorTok{\}}
+    \CommentTok{// rest of our attribute modification}
+    \CommentTok{// ...}
+\NormalTok{    </script}\OperatorTok{>}
+\NormalTok{</body}\OperatorTok{>}
+\end{Highlighting}
+\end{Shaded}
+
+    After reloading 5 times, the JSON \emph{(JavaScript Object Notation)} in
+the LocalStorage will look something like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{[}
+    \FloatTok{148.40000000003783}\OtherTok{,}
+    \FloatTok{149.19999999983702}\OtherTok{,}
+    \FloatTok{146.39999999963038}\OtherTok{,}
+    \FloatTok{150.80000000034488}\OtherTok{,}
+    \FloatTok{146.60000000003492}
+\OtherTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+This test must be included in all the \texttt{index.html} files of our
+component.
+
+    Calling the different \texttt{URLs} in our browser already allows us to
+compare the performance of the different components.\\
+However there is a lot of stuff that may influence our performance
+measurements eg.: - current network capacity utilization - background
+tasks running on our machine
+
+For getting decent test results we need to call all the applications
+multiple times and then compare the sum of our time measurements.\\
+Since we are programmers and love automation, \textbf{Selenium} will do
+the job for us.
+
+Let's write a Python script and define the function
+\texttt{check\_performance()}.\\
+This function will automatically open the different applications in a
+chrome web browser for a certain amount of times.\\
+\emph{(I decided to go with 100 page calls)}
+
+Furthermore, let's save the result in the LocalStorage into a
+\texttt{JSON} file: \texttt{bodyRendering.json}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{chromedriver} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/usr/local/bin/chromedriver}\PY{l+s+s2}{\PYZdq{}}
+        
+        
+        \PY{k}{def} \PY{n+nf}{check\PYZus{}performance}\PY{p}{(}\PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8000}\PY{p}{,} \PY{n}{sleep}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,}
+        					  \PY{n}{foldername}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+        					  \PY{n}{path}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+        	\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}opens the chrome browser multiple times }
+        \PY{l+s+sd}{        and saves the token contents from \PYZsq{}bodyRendering\PYZsq{} into a bodyRender.json file}
+        \PY{l+s+sd}{	    }
+        \PY{l+s+sd}{	Args:}
+        \PY{l+s+sd}{		port: Number defining on which port of localhost the application is running on}
+        \PY{l+s+sd}{		sleep: time in seconds before page reload}
+        \PY{l+s+sd}{		page\PYZus{}calls: amount of times the URL is requested}
+        \PY{l+s+sd}{		foldername: name of the folder, where to store the resulting JSON file}
+        \PY{l+s+sd}{		path: relative path to foldername}
+        \PY{l+s+sd}{	\PYZdq{}\PYZdq{}\PYZdq{}}
+            
+            \PY{c+c1}{\PYZsh{} first we open a chrome browser window with the help of Selinium\PYZsq{}s webdriver}
+            \PY{c+c1}{\PYZsh{} we wait 30 miliseconds for the browser window to open}
+        	\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{http://127.0.0.1:}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{port}\PY{p}{)}
+        	\PY{n}{driver} \PY{o}{=} \PY{n}{webdriver}\PY{o}{.}\PY{n}{Chrome}\PY{p}{(}\PY{n}{chromedriver}\PY{p}{)}
+        	\PY{n}{driver}\PY{o}{.}\PY{n}{implicitly\PYZus{}wait}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+        	
+            \PY{c+c1}{\PYZsh{} in a loop we reload the page n times}
+            \PY{c+c1}{\PYZsh{} for making sure the page was rendered completely and the LocalStorage was filled }
+                \PY{c+c1}{\PYZsh{} we wait some seconds before the page refresh}
+        	\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{p}{)}\PY{p}{:}
+        		\PY{n}{driver}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{url}\PY{p}{)}
+        		\PY{n}{time}\PY{o}{.}\PY{n}{sleep}\PY{p}{(}\PY{n}{sleep}\PY{p}{)}
+        	
+            \PY{c+c1}{\PYZsh{} let\PYZsq{}s get the LocalStogage \PYZsq{}bodyRendering\PYZsq{} token}
+        	\PY{n}{result} \PY{o}{=} \PY{n}{driver}\PY{o}{.}\PY{n}{execute\PYZus{}script}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{return localStorage.getItem(}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{bodyRendering}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        	
+            \PY{c+c1}{\PYZsh{} close the browser session}
+        	\PY{n}{driver}\PY{o}{.}\PY{n}{quit}\PY{p}{(}\PY{p}{)}
+        	
+        	\PY{n}{local\PYZus{}path} \PY{o}{=} \PY{n}{path}
+        	
+        	\PY{c+c1}{\PYZsh{}get current working directory}
+        	\PY{n}{path} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{foldername}
+        	
+            \PY{c+c1}{\PYZsh{} write the resulting JSON file}
+        	\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{path} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/BodyRendering.json}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        	\PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        	\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+        	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{🥳  🎉 🍾 Yay, successfully created }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{n}{local\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{foldername} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/BodyRendering.json}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}} \PY{p}{)}
+        	
+        	\PY{c+c1}{\PYZsh{} return the mean value of our resulting performance array}
+        	\PY{k}{return} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{result}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        		
+\end{Verbatim}
+
+
+    Now, since we've defined our performance measurement function let's
+iterate over the folders, where the resulting
+\texttt{bodyRendering.json} should be written to.
+
+For providing most possible equal conditions, you should try to close
+all running applications and leave your computer do the measurements.\\
+\textbf{Important}: your computer shouldn't fall into sleep mode during
+this process.
+
+If you do 100 page calls through 6 applications with a sleep time of two
+seconds, this will take about: -
+\(f(time\_check\_performance) = 100 \times 6 \times 2sec = 1200sec = 20min\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{foldernames} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{01\PYZhy{}js\PYZhy{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{02\PYZhy{}webcomponent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{p}{[}\PY{n}{check\PYZus{}performance}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{foldername}\PY{o}{=}\PY{n}{foldernames}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8000}\PY{o}{+}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{foldernames}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/00-global-styling/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/01-js-component/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/02-webcomponent/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/03-angular/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/04-polymer/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/05-vue/BodyRendering.json"
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} [106.30400000001828,
+          113.21500000034575,
+          120.93399999997928,
+          159.2769999999291,
+          105.66700000046694,
+          146.63300000000163]
+\end{Verbatim}
+            
+    Next let's take a look at the json files.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar/}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} read the json files in with pandas}
+         \PY{n}{global\PYZus{}styling\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{js\PYZus{}component\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{01\PYZhy{}js\PYZhy{}component/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{web\PYZus{}component\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{02\PYZhy{}webcomponent/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{angular\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{polymer\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{vue\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} create a dataframe for the plain components and set the column names}
+         \PY{n}{frames} \PY{o}{=} \PY{p}{[}\PY{n}{global\PYZus{}styling\PYZus{}dataframe}\PY{p}{,} 
+                   \PY{n}{js\PYZus{}component\PYZus{}dataframe}\PY{p}{,}
+                   \PY{n}{web\PYZus{}component\PYZus{}dataframe}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{global\PYZus{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{js\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{web\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{performance\PYZus{}dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns}
+         
+         \PY{c+c1}{\PYZsh{} create a dataframe out of the framework generated web components and define the column names}
+         \PY{n}{frames\PYZus{}frameworks} \PY{o}{=} \PY{p}{[}\PY{n}{angular\PYZus{}dataframe}\PY{p}{,}
+                              \PY{n}{polymer\PYZus{}dataframe}\PY{p}{,}
+                              \PY{n}{vue\PYZus{}dataframe}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns\PYZus{}frameworks} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} combine both dataframes}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         
+         
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            106.3         113.2          120.9    159.3    105.7 146.6
+         std               6.8           7.2            7.6     14.0      6.8  11.5
+         min             102.6         107.3          116.2    152.3    101.9 138.9
+         25\%             104.4         110.5          118.9    156.4    103.9 143.5
+         50\%             105.4         112.4          119.9    157.8    104.9 145.0
+         75\%             106.7         114.6          121.5    159.1    105.8 147.6
+         max             171.7         180.8          193.2    295.6    171.6 256.5
+\end{Verbatim}
+            
+    From the pandas data frame description, one can already analyze the
+differences.
+
+Let's have a look at the calculated mean values: - Polymer and
+global\_styling have the lowest calculated mean value, which is close to
+100ms - global\_styling/polymer to the js\_component has the same
+distance in their mean value\\
+as the js\_component to the web\_component, which is about 10ms - from
+the web\_component to Vue it's about twice the difference\\
+compared to the distance between the web\_component and js\_component,\\
+which is about 20ms - from Vue to Angular it's as well about 20ms
+
+Which is very interesting here is the huge standard deviation.
+
+Let's further analyze our data frame by visualizing it with a line
+graph:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} figure for the web components created with the frameworks}
+         \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{line}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Framework Analysis}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                               \PY{n}{yticks}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{300}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{stacked} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{app call}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    After visualizing, we already see where the huge standard deviation
+comes from:\\
+- it's the first call after we opened the chrome browser with
+\emph{Selenium}.
+
+\begin{quote}
+\textbf{Where could this result from?}\\
+With the chrome web browser Google tries to outplay all the other web
+browsers such as Firefox, Edge, Opera or Safari, just naming a view.
+\href{https://computer.howstuffworks.com/google-chrome-browser6.htm}{Read
+More}\\
+When refreshing the page, the browser engine tries to show the user
+requested website as fast as possible. This optimization leads to the
+first request being much slower than the following page requests.
+\end{quote}
+
+The interesting question now is, whether we would get different results,
+if we opened and closed the browser for each performance test.
+
+Let's try this out by redefining our performance function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{chromedriver} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/usr/local/bin/chromedriver}\PY{l+s+s2}{\PYZdq{}}
+        
+        
+        \PY{k}{def} \PY{n+nf}{check\PYZus{}performance\PYZus{}new\PYZus{}boot}\PY{p}{(}\PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8000}\PY{p}{,} \PY{n}{sleep}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,}
+        							   \PY{n}{foldername}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+        							   \PY{n}{path}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+        	\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}opens chrome browser multiple times }
+        \PY{l+s+sd}{        and saves the token contents from \PYZsq{}bodyRendering\PYZsq{} into a bodyRender.json file}
+        \PY{l+s+sd}{	    }
+        \PY{l+s+sd}{	Args:}
+        \PY{l+s+sd}{		port: Number defining on which port of localhost the application is running on}
+        \PY{l+s+sd}{		sleep: time in seconds before page reload}
+        \PY{l+s+sd}{		page\PYZus{}calls: amount of times the URL is requested}
+        \PY{l+s+sd}{		foldername: name of the folder, where to store the resulting JSON file}
+        \PY{l+s+sd}{		path: relative path to foldername}
+        \PY{l+s+sd}{	\PYZdq{}\PYZdq{}\PYZdq{}}
+            
+        	\PY{c+c1}{\PYZsh{} first we define the url of the application }
+        	\PY{c+c1}{\PYZsh{} and initialize our resulting performance array}
+        	\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{http://127.0.0.1:}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{port}\PY{p}{)}
+        	\PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        	
+        	\PY{c+c1}{\PYZsh{} in a loop we open and close the chrome browser and get the specified url}
+        	\PY{c+c1}{\PYZsh{} for making sure the page was rendered completely and the LocalStorage was filled }
+        		\PY{c+c1}{\PYZsh{} we wait some seconds before we add the single value in the LocalStorage array }
+        		\PY{c+c1}{\PYZsh{} to our resulting performance array}
+        	\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{p}{)}\PY{p}{:}
+        		\PY{n}{driver} \PY{o}{=} \PY{n}{webdriver}\PY{o}{.}\PY{n}{Chrome}\PY{p}{(}\PY{n}{chromedriver}\PY{p}{)}
+        		\PY{n}{driver}\PY{o}{.}\PY{n}{implicitly\PYZus{}wait}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+        		\PY{n}{driver}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{url}\PY{p}{)}
+        		\PY{n}{time}\PY{o}{.}\PY{n}{sleep}\PY{p}{(}\PY{n}{sleep}\PY{p}{)}
+        		\PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{p}{(}
+                    \PY{n}{driver}\PY{o}{.}\PY{n}{execute\PYZus{}script}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{return localStorage.getItem(}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{bodyRendering}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        		\PY{n}{driver}\PY{o}{.}\PY{n}{quit}\PY{p}{(}\PY{p}{)}
+        	
+        	\PY{n}{local\PYZus{}path} \PY{o}{=} \PY{n}{path}
+        	
+        	\PY{c+c1}{\PYZsh{}get current working directory}
+        	\PY{n}{path} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{foldername}
+        	
+            \PY{c+c1}{\PYZsh{} write the resulting JSON file}
+        	\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{path} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/BodyRendering.json}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        	\PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{result}\PY{p}{)}\PY{p}{)}
+        	\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+        	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{🥳  🎉 🍾 Yay, successfully created }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{n}{local\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{foldername} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/BodyRendering.json}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}} \PY{p}{)}
+        
+        	
+            \PY{c+c1}{\PYZsh{} return the mean value of our resulting performance array}
+        	\PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        	
+        		
+\end{Verbatim}
+
+
+    To run our newly defined function will take longer than the multiple
+page get function, because the browser will be restarted each time.
+
+It will take about one hour, where you shouldn't touch the computer for
+not irritating the test results.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{foldernames} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{01\PYZhy{}js\PYZhy{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{02\PYZhy{}webcomponent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{p}{[}\PY{n}{check\PYZus{}performance\PYZus{}new\PYZus{}boot}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{foldername}\PY{o}{=}\PY{n}{foldernames}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/new\PYZus{}boot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8000}\PY{o}{+}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{foldernames}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/00-global-styling/new\_boot/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/01-js-component/new\_boot/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/02-webcomponent/new\_boot/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/03-angular/new\_boot/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/04-polymer/new\_boot/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/05-vue/new\_boot/BodyRendering.json"
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [177.85400000000664,
+         188.10100000053353,
+         190.3729999998177,
+         290.46199999997043,
+         173.2340000001568,
+         243.16999999915424]
+\end{Verbatim}
+            
+    Let's take a look at the resulting JSON files and store them in new data
+frames:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar/}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} read the json files in with pandas}
+         \PY{n}{global\PYZus{}styling\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00\PYZhy{}global\PYZhy{}styling/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{js\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{01\PYZhy{}js\PYZhy{}component/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{web\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{02\PYZhy{}webcomponent/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{angular\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{polymer\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{vue\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue/new\PYZus{}boot/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} create a dataframe for the plain components and set the column names}
+         \PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{p}{[}\PY{n}{global\PYZus{}styling\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,} 
+                   \PY{n}{js\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                   \PY{n}{web\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{global\PYZus{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{js\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{web\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns}
+         
+         \PY{c+c1}{\PYZsh{} create a dataframe out of the framework generated web components and define the column names}
+         \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{p}{[}\PY{n}{angular\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{polymer\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{vue\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns\PYZus{}frameworks} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} combine both dataframes}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         
+         
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            177.9         188.1          190.4    290.5    173.2 243.2
+         std               9.5           4.8            4.7      4.8      6.8   4.6
+         min             113.0         181.1          185.3    280.2    115.7 234.2
+         25\%             176.9         184.8          187.8    287.0    171.6 240.3
+         50\%             178.4         187.7          189.6    291.0    173.2 243.2
+         75\%             180.8         190.3          191.7    293.4    174.9 245.8
+         max             187.6         220.0          219.3    300.7    200.1 262.2
+\end{Verbatim}
+            
+    The mean values of course are much higher \emph{(almost doubled)}, as
+expected.
+
+Let's visualize our dataframe in a line graph:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} create a dataframe for the plain components and set the column names}
+         \PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{p}{[}\PY{n}{global\PYZus{}styling\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,} 
+                   \PY{n}{js\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                   \PY{n}{web\PYZus{}component\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{global\PYZus{}styling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{js\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{web\PYZus{}component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns}
+         
+         \PY{c+c1}{\PYZsh{} create a dataframe out of the framework generated web components and define the column names}
+         \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{p}{[}\PY{n}{angular\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{polymer\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{vue\PYZus{}dataframe\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{n}{performance\PYZus{}columns\PYZus{}frameworks} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} combine both dataframes}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} figure for the web components created with the frameworks}
+         \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{line}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Framework Analysis}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                               \PY{n}{yticks}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{160}\PY{p}{,}\PY{l+m+mi}{320}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{stacked} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{app call}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The graph shows some spikes in the measurement.
+
+Probably that time, there was something going on on my network or
+background processes on my MacBook.
+
+For getting better comparable results, let's flatten the graphs down, by
+replacing the outliers with mean values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{def} \PY{n+nf}{regulate\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{mean} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         	\PY{n}{std} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} replace outliers that are outside the [mean\PYZhy{}std, mean+std] area }
+             \PY{c+c1}{\PYZsh{} with mean values}
+         	\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{mean} \PY{o}{\PYZhy{}} \PY{n}{std}\PY{p}{,} \PY{n}{mean}\PY{p}{,}\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{mean} \PY{o}{+} \PY{n}{std}\PY{p}{,} \PY{n}{mean}\PY{p}{,}\PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         	\PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{for} \PY{n}{df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{regulate\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c+c1}{\PYZsh{} update the dataframe with the flattened values}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            179.0         187.9          189.6    290.5    173.5 243.4
+         std               2.7           2.4            2.3      2.3      2.2   1.8
+         min             174.3         183.5          185.9    285.7    169.8 239.0
+         25\%             176.9         186.4          187.8    289.5    171.7 242.4
+         50\%             178.4         188.1          189.7    290.5    173.2 243.2
+         75\%             180.6         189.0          190.5    291.7    174.9 244.7
+         max             187.0         192.8          194.6    295.1    179.0 247.6
+\end{Verbatim}
+            
+    The standard deviation goes down drastically from 9.5 to 2.7 for the
+global\_styling component.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} figure for the web components created with the frameworks}
+         \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{line}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Framework Analysis}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                                               \PY{n}{yticks}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{160}\PY{p}{,}\PY{l+m+mi}{320}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{stacked} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{app call}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Let's compare the graph of \texttt{new\ boot} to the
+\texttt{page\ refresh} performance measurement.
+
+But before, let's flatten down the measurements for the
+\texttt{page\ refresh} as well.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{k}{for} \PY{n}{df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{frames} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{regulate\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{c+c1}{\PYZsh{} update the dataframe with the flattened values}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            105.7         112.5          120.2    157.9    105.0 145.5
+         std               1.6           2.4            2.1      2.4      1.5   3.1
+         min             102.6         107.3          116.2    152.3    101.9 138.9
+         25\%             104.4         110.5          118.9    156.4    103.9 143.5
+         50\%             105.4         112.4          119.9    157.8    104.9 145.0
+         75\%             106.7         114.6          121.3    159.1    105.8 147.6
+         max             109.7         117.2          127.3    167.5    110.6 154.8
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{title} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g1: Page Resfresh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g2: Browser Reboot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{pDF} \PY{o}{=} \PY{p}{[}\PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{p}{,} \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{pDF}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}	axs[i].set\PYZus{}yticks(range(100,300,50))}
+             
+         \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Performance Measurement Page Refresh vs. New Boot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} Text(0.5, 0.98, 'Performance Measurement Page Refresh vs. New Boot')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{Comparison Observations}: - in g2 the lines are translated
+upwards, which means the performance is generally slower - in g1 and g2
+for the js\_component, global\_styling component, web\_component and
+Polymer component both graphs show almost the same distance for the
+different components, meaning they show comparable results - however, in
+g2 the js\_component and the web\_component seem to be closer together -
+in g2 the web\_component displays a bigger distance to the vue component
+then in g1 \emph{(about twice as much)} - futhermore in g2 the distance
+from the Vue component to the Angular component is much higher *(almost
+4 times more)
+
+Here we see that we get quite different results for both measurement
+types.
+
+So however the time duration of the browser reboot measurement takes
+much longer than the page refresh method, we definitely cannot just go
+with the page refresh method and assume reliable results, which would
+only differ in some translation in the y-Axis.\\
+This leads to the fact, that we have to abstract conclusions from the
+page reboot measurement analysis.
+
+\textbf{Conclusions \emph{(page reboot method)}} - regarding frameworks,
+Polymer is the by far best performing one. The polymer component is even
+on one level with the global\_styling component - Angular shows the by
+far slowest results - Vue is in the middle of our performance analysis
+regarding frameworks, however it is about five percent slower than the
+web component
+
+    With our performance analysis we measured the performance of our web
+components including the frameworks.\\
+However most of the times a website will not consist of one web
+component only. So, it is important to test, how the web components,
+generated by the frameworks, perform not measuring the framework
+addition.
+
+We will do this by placing the framework specific scripts into the
+header region.\\
+So we can be sure, they will not add to the final web component
+measurement, which we do in the body.
+
+In the following we will do these two operations: - rewrite our
+\texttt{index.html} measurement methodic - start servers serving the
+adjusted \texttt{index.html} files
+
+    \begin{quote}
+For being able to distinguish between the plain framework generated web
+components and the full-fledged component, I create a new folder
+\texttt{plain} inside each framework component.
+\end{quote}
+
+This is how the \texttt{index.html} files are adjusted:
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{<head>}
+  \KeywordTok{<title>}\NormalTok{Web components Polymer - Stress Test (120)}\KeywordTok{</title>}
+  \KeywordTok{<link}\OtherTok{ rel=}\StringTok{"icon"}\OtherTok{ href=}\StringTok{"static/favicon.ico"}\OtherTok{ type=}\StringTok{"image/x-icon"} \KeywordTok{/>}
+  \KeywordTok{<style>}\NormalTok{<!-- }\FunctionTok{...}\NormalTok{ --}\OperatorTok{>}\KeywordTok{</style>}
+  \KeywordTok{<script}\OtherTok{ src=}\StringTok{"static/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"}\KeywordTok{></script>}
+\KeywordTok{</head>}
+\KeywordTok{<body>}
+    \KeywordTok{<script>let}\NormalTok{ bodyRendering }\OperatorTok{=} \VariableTok{performance}\NormalTok{.}\AttributeTok{now}\NormalTok{()}\KeywordTok{</script>}
+
+    \KeywordTok{<h1>}\NormalTok{Polymer - Stress Test (120)}\KeywordTok{</h1>}
+    \KeywordTok{<progress-bar}\OtherTok{ id=}\StringTok{"progress-bar-1"}\OtherTok{ class=}\StringTok{"pa-1"}\KeywordTok{></progress-bar>}
+    \CommentTok{<!-- ... -->}
+    \CommentTok{<!-- ... -->}
+    \CommentTok{<!-- ... -->}
+    \KeywordTok{<script}\OtherTok{ type=}\StringTok{"module"}\OtherTok{ src=}\StringTok{"static/progress-bar-polymer.js"}\KeywordTok{></script>}
+
+    \KeywordTok{<script>}
+    \CommentTok{// ...}
+    \CommentTok{// inside our interval}
+        \KeywordTok{let}\NormalTok{ progressInterval }\OperatorTok{=} \AttributeTok{setInterval}\NormalTok{(() }\KeywordTok{=>} \OperatorTok{\{}
+        
+        \CommentTok{// check whether you are in the first iteration round}
+            \ControlFlowTok{if}\NormalTok{(complete }\OperatorTok{===} \DecValTok{5}\NormalTok{) }\OperatorTok{\{}
+        
+                \CommentTok{// calculate the passed time of our body rendering }
+                \CommentTok{// and get the 'bodyRendering' token from LocalStorage}
+                \KeywordTok{let}\NormalTok{ passedTime }\OperatorTok{=} \AttributeTok{parseFloat}\NormalTok{(}\VariableTok{performance}\NormalTok{.}\AttributeTok{now}\NormalTok{()) }\OperatorTok{-} \AttributeTok{parseFloat}\NormalTok{(bodyRendering)}
+                \KeywordTok{let}\NormalTok{ lsBR }\OperatorTok{=} \VariableTok{JSON}\NormalTok{.}\AttributeTok{parse}\NormalTok{(}\VariableTok{localStorage}\NormalTok{.}\AttributeTok{getItem}\NormalTok{(}\StringTok{'bodyRendering'}\NormalTok{))}
+        
+                \CommentTok{// if the token in the LocalStorage exists, append the newly calculated time}
+                \CommentTok{// otherwise create a new object with an array, }
+                \CommentTok{// that has the calculated time as it's initial item}
+                \ControlFlowTok{if}\NormalTok{(lsBR)}
+                    \VariableTok{lsBR}\NormalTok{.}\AttributeTok{push}\NormalTok{(passedTime)}
+                \ControlFlowTok{else}
+\NormalTok{                    lsBR }\OperatorTok{=}\NormalTok{ [passedTime]}
+
+                \VariableTok{localStorage}\NormalTok{.}\AttributeTok{setItem}\NormalTok{(}\StringTok{'bodyRendering'}\OperatorTok{,} \VariableTok{JSON}\NormalTok{.}\AttributeTok{stringify}\NormalTok{(lsBR))}
+            \OperatorTok{\}}
+    \CommentTok{// rest of our attribute modification}
+    \CommentTok{// ...}
+\NormalTok{    </script}\OperatorTok{>}
+\NormalTok{</body}\OperatorTok{>}
+\end{Highlighting}
+\end{Shaded}
+
+    Let's start the servers for the newly created \texttt{index.html} files
+in different terminal windows:
+
+\begin{itemize}
+\tightlist
+\item
+  Plain Angular web component:
+  \texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/03-angular\ \&\&\ python3\ ./server.py}
+\item
+  Plain Polymer web component:
+  \texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/04-polymer\ \&\&\ python3\ ./server.py}
+\item
+  Plain Vue web component:
+  \texttt{cd\ 03\_Performance-Test/webcomponents/00\_progress-bar/05-vue\ \&\&\ python3\ ./server.py}
+\end{itemize}
+
+\emph{for better comparability I as well start the servers for the
+global\_styling, js\_component, and web\_component.}
+
+    Now we need to measure the performance for the plain web components with
+the already defined \texttt{check\_performance} function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{foldernames} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{p}{[}\PY{n}{check\PYZus{}performance}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{foldername}\PY{o}{=}\PY{n}{foldernames}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/plain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8003}\PY{o}{+}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{foldernames}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/03-angular/plain/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/04-polymer/plain/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/05-vue/plain/BodyRendering.json"
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [140.52100000017163, 105.630999999903, 144.7639999999774]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar/}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} read the json files in with pandas}
+         \PY{n}{angular\PYZus{}dataframe\PYZus{}plain} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{polymer\PYZus{}dataframe\PYZus{}plain} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{vue\PYZus{}dataframe\PYZus{}plain} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{c+c1}{\PYZsh{} create a dataframe out of the framework generated web components and define the column names}
+         \PY{n}{frames\PYZus{}frameworks\PYZus{}plain} \PY{o}{=} \PY{p}{[}\PY{n}{angular\PYZus{}dataframe\PYZus{}plain}\PY{p}{,}
+                              \PY{n}{polymer\PYZus{}dataframe\PYZus{}plain}\PY{p}{,}
+                              \PY{n}{vue\PYZus{}dataframe\PYZus{}plain}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} flatten down the lines for better comparability}
+         \PY{k}{for} \PY{n}{df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{frames\PYZus{}frameworks\PYZus{}plain}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{regulate\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{c+c1}{\PYZsh{} combine both dataframes}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}plain}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         
+         
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}58}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            105.7         112.5          120.2    139.3    105.0 143.8
+         std               1.6           2.4            2.1      2.4      1.4   3.3
+         min             102.6         107.3          116.2    135.5    102.4 137.3
+         25\%             104.4         110.5          118.9    137.8    104.2 141.1
+         50\%             105.4         112.4          119.9    138.9    104.9 143.7
+         75\%             106.7         114.6          121.3    140.5    105.7 145.6
+         max             109.7         117.2          127.3    147.4    108.8 152.1
+\end{Verbatim}
+            
+    The standard deviation is pretty low, which allows us to compare the
+mean values more reliably.
+
+\begin{itemize}
+\tightlist
+\item
+  We see that the Angular web component and Vue web component get closer
+  to the plain web component.
+\item
+  Furthermore the Angular web component has almost the same mean value
+  as the Vue web component.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    very interesting here is, that the angular web component is even
+    very slightly better in performance than the Vue web component
+  \end{itemize}
+\item
+  The Polymer component by far competes best here.
+\end{itemize}
+
+Let's take a look at the line graph:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{title} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g1: Web Components incl. Frameworks}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g2: Plain Web Components}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{pDF} \PY{o}{=} \PY{p}{[}\PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{p}{,} \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{pDF}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}	axs[i].set\PYZus{}yticks(range(100,300,50))}
+             
+         \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Performance Measurement Web Components incl. Frameworks vs. Plain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} Text(0.5, 0.98, 'Performance Measurement Web Components incl. Frameworks vs. Plain')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Furthermore let's take a look at the \texttt{new\_boot} measurement
+methodic:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{foldernames} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{p}{[}\PY{n}{check\PYZus{}performance\PYZus{}new\PYZus{}boot}\PY{p}{(}\PY{n}{page\PYZus{}calls}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{foldername}\PY{o}{=}\PY{n}{foldernames}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/new\PYZus{}boot/plain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{port}\PY{o}{=}\PY{l+m+mi}{8003}\PY{o}{+}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{foldernames}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/03-angular/new\_boot/plain/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/04-polymer/new\_boot/plain/BodyRendering.json"
+🥳  🎉 🍾 Yay, successfully created "performance\_test\_result/00\_progress-bar/05-vue/new\_boot/plain/BodyRendering.json"
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} [247.8810000001249, 166.18600000001607, 214.91900000000896]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{performance\PYZus{}test\PYZus{}result/00\PYZus{}progress\PYZhy{}bar/}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} read the json files in with pandas}
+         \PY{n}{angular\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{03\PYZhy{}angular/new\PYZus{}boot/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{polymer\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{04\PYZhy{}polymer/new\PYZus{}boot/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{vue\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}json}\PY{p}{(}\PY{n}{body\PYZus{}rendering\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{05\PYZhy{}vue/new\PYZus{}boot/plain/BodyRendering.json}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{c+c1}{\PYZsh{} create a dataframe out of the framework generated web components and define the column names}
+         \PY{n}{frames\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{p}{[}\PY{n}{angular\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{polymer\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{,}
+                              \PY{n}{vue\PYZus{}dataframe\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} flatten down the lines for better comparability}
+         \PY{k}{for} \PY{n}{df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{frames\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{regulate\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} combine both dataframes}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{frames\PYZus{}new\PYZus{}boot} \PY{o}{+} \PY{n}{frames\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}
+         
+         \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}61}]:}        global\_styling  js\_component  web\_component  angular  polymer   vue
+         count           100.0         100.0          100.0    100.0    100.0 100.0
+         mean            179.0         187.9          189.6    247.8    168.2 221.6
+         std               2.7           2.4            2.3      1.7      1.9   3.9
+         min             174.3         183.5          185.9    244.1    164.3 214.9
+         25\%             176.9         186.4          187.8    246.5    166.7 219.3
+         50\%             178.4         188.1          189.7    247.9    168.1 222.4
+         75\%             180.6         189.0          190.5    248.7    169.4 224.1
+         max             187.0         192.8          194.6    251.4    174.8 233.9
+\end{Verbatim}
+            
+    let's compare both measurement methodics
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{title} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g1: Web Components incl. Frameworks}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g2: Plain Web Components}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{pDF} \PY{o}{=} \PY{p}{[}\PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks}\PY{p}{,} \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{pDF}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}	axs[i].set\PYZus{}yticks(range(100,300,50))}
+             
+         \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Performance Measurement Page Refresh: Web Components incl. Frameworks vs. Plain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{title} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g3: Web Components incl. Frameworks}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g4: Plain Web Components}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{pDF} \PY{o}{=} \PY{p}{[}\PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}new\PYZus{}boot}\PY{p}{,} \PY{n}{performance\PYZus{}dataframe\PYZus{}frameworks\PYZus{}plain\PYZus{}new\PYZus{}boot}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{pDF}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         	\PY{n}{axs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}	axs[i].set\PYZus{}yticks(range(100,300,50))}
+             
+         \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{performance\PYZus{}columns} \PY{o}{+} \PY{n}{performance\PYZus{}columns\PYZus{}frameworks}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}to\PYZus{}anchor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Performance Measurement New Boot: Web Components incl. Frameworks vs. Plain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} Text(0.5, 0.98, 'Performance Measurement New Boot: Web Components incl. Frameworks vs. Plain')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{comparison-observations}{%
+\subsection{\texorpdfstring{\textbf{Comparison
+Observations}}{Comparison Observations}}\label{comparison-observations}}
+
+\begin{itemize}
+\item
+\item
+\end{itemize}
+
+\hypertarget{conclusions}{%
+\subsection{\texorpdfstring{\textbf{Conclusions}}{Conclusions}}\label{conclusions}}
+
+\begin{itemize}
+\item
+\item
+\end{itemize}
+
+    \hypertarget{section}{%
+\subsection{-----}\label{section}}
+
+\hypertarget{section-1}{%
+\subsection{-----}\label{section-1}}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
