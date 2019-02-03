@@ -151,6 +151,23 @@
     (function () {
         const bar_1 = new ProgressBar(document.querySelector('#progress-bar-1'));
         new ProgressBar(document.querySelector('#progress-bar-2'), 10);
+        let complete = 5;
+
+        let progressInterval = setInterval(() => {
+            complete = parseFloat((complete + 1) * 1.06).toFixed(1);
+            if (complete <= 90) {
+                bar_1.complete = complete;
+            } else {
+                bar_1.complete = 90
+                clearInterval(progressInterval);
+            }
+        }, 100);
+    })()
+</script>
+<script>
+    (function () {
+        const bar_1 = new ProgressBar(document.querySelector('#progress-bar-1'));
+        new ProgressBar(document.querySelector('#progress-bar-2'), 10);
 
         const progressBars = document.querySelectorAll('.progress-bar-parent');
         Array.prototype.forEach.call(progressBars, (bar, i) => {
@@ -177,13 +194,6 @@
                 bar_1.complete = 90
                 clearInterval(progressInterval);
 
-          /*      let p = JSON.parse(localStorage.getItem('Performance'))
-                if(p && p.arr)
-                    p.arr.push(ProgressBar.performance)
-                else
-                    p = {arr: [ProgressBar.performance]}
-
-                localStorage.setItem('Performance', JSON.stringify(p))*/
             }
         }, 100);
 
