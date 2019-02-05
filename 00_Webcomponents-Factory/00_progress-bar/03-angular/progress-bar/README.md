@@ -18,11 +18,11 @@
   - define custom element in App constructor
   ````javascript
   export class AppModule {
-    constructor(private injector: Injector) {
-      const progressBar = createCustomElement(ProgressBarComponent, { injector });
+    constructor(private injector: Injector) {}
+    ngDoBootstrap() {
+       const progressBar = createCustomElement(ProgressBarComponent, { injector: this.injector  });
       customElements.define('progress-bar', progressBar);
     }
-    ngDoBootstrap() {}
   }
   ````
 6) create build script in package.json

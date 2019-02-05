@@ -61,9 +61,7 @@ class ProgressBarPolymer extends PolymerElement {
         return {
             complete: {
                 type: Number,
-                value: 0,
-                /* notify: true,
-                 reflectToAttribute: true*/
+                value: 0
             },
         };
     }

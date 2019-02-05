@@ -1,6 +1,8 @@
 <template>
     <div class="progress-bar">
-        <div class="progress-bar-inner" :style="{width: complete + '%', 'animation-delay': randomAnimationDelay}">{{complete}}%</div>
+        <div class="progress-bar-inner" :style="{width: complete + '%', 'animation-delay': randomAnimationDelay}">
+            {{complete}}%
+        </div>
     </div>
 </template>
 

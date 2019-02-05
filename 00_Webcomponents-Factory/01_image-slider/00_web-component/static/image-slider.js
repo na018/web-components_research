@@ -1,11 +1,11 @@
 class ImageSlider extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: "open"});
+        this._shadow = this.attachShadow({mode: "open"});
         this._selected = parseInt(this.getAttribute('selectedindex')) | 0;
         this._dots = [];
         this.generateTemplate();
-        this._fig = this.shadow.querySelector('figure');
+        this._fig = this._shadow.querySelector('figure');
     }
     get selectedindex() {
         return this._selected;
@@ -30,15 +30,15 @@ class ImageSlider extends HTMLElement {
     }
 // lazy properties
     connectedCallback() {
-        const slot = this.shadow.querySelector('slot');
-        const fig = this.shadow.querySelector('figure');
+        const slot = this._shadow.querySelector('slot');
+        const fig = this._shadow.querySelector('figure');
         const slotChildren = slot.assignedNodes()
 
         let  amount = slotChildren.filter(c => c.nodeName === 'IMG').length;
         let counter = 0
         let controls = document.createElement('div')
         let dots = this._dots
-        let selectedindex = this.selectedindex
+
         slotChildren.forEach((child, i)=> {
             if(child.nodeName === 'IMG') {
                 child.style.width = 100 / amount + '%'
@@ -53,11 +53,11 @@ class ImageSlider extends HTMLElement {
                 counter ++
             }
         })
-        this.shadow.querySelector('.controls').appendChild(controls)
+        this._shadow.querySelector('.controls').appendChild(controls)
         fig.style.width = amount * 100 + '%';
 
-        this.shadow.querySelector('.arrow-right').addEventListener('click', this._slide.bind(this,this, 1))
-        this.shadow.querySelector('.arrow-left').addEventListener('click', this._slide.bind(this,this, -1))
+        this._shadow.querySelector('.arrow-right').addEventListener('click', this._slide.bind(this,this, 1))
+        this._shadow.querySelector('.arrow-left').addEventListener('click', this._slide.bind(this,this, -1))
     }
 
     _slide(elem, i) {
@@ -75,16 +75,16 @@ class ImageSlider extends HTMLElement {
      * removing event listeners.
      */
     disconnectedCallback() {
-        this.shadow.querySelector('.arrow-right').removeEventListener('click', this._slide)
-        this.shadow.querySelector('.arrow-left').removeEventListener('click', this._slide)
-        Array.prototype.forEach.call(this.shadow.querySelectorAll('.controls span'), control => {
+        this._shadow.querySelector('.arrow-right').removeEventListener('click', this._slide)
+        this._shadow.querySelector('.arrow-left').removeEventListener('click', this._slide)
+        Array.prototype.forEach.call(this._shadow.querySelectorAll('.controls span'), control => {
             control.removeEventListener('click', this._selectIndex)
         })
     }
 
 
     generateTemplate() {
-        this.shadow.innerHTML = `
+        this._shadow.innerHTML = `
        <style>
       :host>div{padding:0 40px;position:relative;display:inline-block}:host>div .arrow-left{border-top:1px solid #afb1b2;border-left:1px solid #afb1b2;width:30px;height:30px;transform:rotate(-45deg);position:absolute;top:45%;left:0;cursor:pointer}:host>div .arrow-right{border-top:1px solid #afb1b2;border-right:1px solid #afb1b2;width:30px;height:30px;transform:rotate(45deg);position:absolute;top:45%;right:0;cursor:pointer}:host>div>div{overflow-x:hidden}:host>div>div figure{min-height:200px;background:grey;transition:.7s ease;position:relative;width:600%;margin:0;left:0;text-align:left;font-size:0;animation:25s slidy infinite}:host>div>div figure ::slotted(img){width:20%;float:left;cursor:pointer; height:400px;}:host>div>div figure ::slotted(img:hover){-webkit-transform:scale(1.03);-ms-transform:scale(1.03);transform:scale(1.03);transition:.4s;cursor:pointer}:host>div>div .controls{text-align:center}:host>div>div .controls span:hover{background: #9e0317;}:host>div>div .controls span{border-radius: 50%;width:.5rem;height:.5rem;padding:0;margin:1.5rem .375rem 0;background-color:#c8cacb;color:transparent;display:inline-block;cursor:pointer}:host>div>div .controls span.selected{background-color:#d5001c}
         </style>

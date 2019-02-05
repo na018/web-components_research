@@ -30,7 +30,7 @@ import {
   encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ImageSliderComponent implements AfterContentChecked {
-  @ViewChild('imageContainer') content: ElementRef;
+  @ViewChild('imageContainer') figure: ElementRef;
   @Input()
   set selectedindex(val:  string) {
     this._sI = parseInt(val);
@@ -41,7 +41,7 @@ export class ImageSliderComponent implements AfterContentChecked {
   _sI = 0;
 
   ngAfterContentChecked(): void {
-    this.slides = this.content.nativeElement.children
+    this.slides = this.figure.nativeElement.children
     for(let i=0; i< this.slides.length; i++) {
       const slide= this.slides[i];
       slide.style.height = '400px';

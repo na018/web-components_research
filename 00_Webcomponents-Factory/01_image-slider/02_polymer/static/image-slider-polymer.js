@@ -23,7 +23,7 @@ class ImageSliderComponent extends PolymerElement {
         <div>
             <figure style="width: [[_figureWidth]]%;left: {{_left}}%;" >
                     <slot>
-                       <!--      
+                        <!--                 
                         <img src="/static/assets/img/pic-1.jpg" alt >
                         <img src="/static/assets/img/pic-2.jpeg" alt >
                         <img src="/static/assets/img/pic-3.jpeg" alt >
