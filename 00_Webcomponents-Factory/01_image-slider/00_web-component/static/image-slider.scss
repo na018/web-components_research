@@ -1,0 +1,75 @@
+:host>div {
+  padding: 0 40px;
+  position: relative;
+  display: inline-block;
+  .arrow-left {
+    border-top: 1px solid rgb(175, 177, 178);
+    border-left: 1px solid rgb(175, 177, 178);
+    width: 30px;
+    height: 30px;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 45%;
+    left: 0px;
+    cursor: pointer;
+  }
+  .arrow-right {
+    border-top: 1px solid rgb(175, 177, 178);
+    border-right: 1px solid rgb(175, 177, 178);
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 45%;
+    right: 0px;
+    cursor: pointer;
+  }
+  > div {
+    overflow-x: hidden;
+    figure {
+      min-height: 200px;
+      background: grey;
+      transition: .7s ease;
+      position: relative;
+      width: 600%;
+      margin: 0;
+      left: 0;
+      text-align: left;
+      font-size: 0;
+      animation: 25s slidy infinite;
+      ::slotted(img) {
+        width: 20%;
+        float: left;
+        cursor: pointer;
+        height: 400px;
+      }
+      ::slotted(img:hover) {
+        -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        transform: scale(1.03);
+        transition: .4s;
+        cursor: pointer;
+      }
+    }
+
+    .controls {
+      text-align: center;
+      span {
+        width: .5rem;
+        height: .5rem;
+        padding: 0;
+        margin: 1.5rem .375rem 0;
+        background-color: #c8cacb;
+        color: transparent;
+        display: inline-block;
+        cursor: pointer;
+        &:hover{
+          background-color: #630012;
+        }
+        &.selected {
+          background-color: #d5001c;
+        }
+      }
+    }
+  }
+}

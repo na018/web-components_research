@@ -1,12 +1,7 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'progress-bar',
-  template: `
-    <div [attr.complete]="complete">
-      <div [ngStyle]="{'width': complete+'%', 'animation-delay': randomAnimationDelay}">{{complete}}%</div>
-    </div>
-  `,
   styles: [`
     div {
       width: 100%;
@@ -44,10 +39,14 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
       }
     }
   `],
-  encapsulation: ViewEncapsulation.Native
+  template: `
+    <div [attr.complete]="complete">
+      <div [ngStyle]="{'width': complete+'%', 'animation-delay': randomAnimationDelay}">{{complete}}%</div>
+    </div>
+  `,
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ProgressBarComponent{
   @Input() complete = 0;
   randomAnimationDelay= Math.random() + 's';
-  constructor() { }
 }

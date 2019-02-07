@@ -1,0 +1,13 @@
+{
+  "name": "polymer-image-slider",
+  "flat": true,
+  "version": "1.0.0",
+  "description": "'This is a polymer web component image-slider demo'",
+  "main": "index.js",
+  "author": "Nadin-Katrin Apel",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.13",
+    "@webcomponents/webcomponentsjs": "^2.2.4"
+  }
+}

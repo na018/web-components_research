@@ -1,154 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Web components Plain Example - Stress Test (120)</title>
+    <meta charset="UTF-8">
+    <title>ProgressBar Web Component Example - Stress Test (120)</title>
     <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
     <style>
         body .progress-bar {
-            /*height: 200px; */
+            /*height: 200px;*/
         }
-
-        .pa-1 {
-            padding: 5px;
-        }
+        .pa-1 { padding: 5px;}
     </style>
 </head>
 <body>
 <script>let bodyRendering = performance.now()</script>
 <h1>Web Components - Stress Test (120)</h1>
 <progress-bar id="progress-bar-1" class="pa-1"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
+<progress-bar id="progress-bar-2" class="pa-1"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
-<progress-bar  class="pa-1" complete="150"></progress-bar>
-<progress-bar  class="pa-1" complete="160"></progress-bar>
-<progress-bar  class="pa-1" complete="170"></progress-bar>
-<progress-bar  class="pa-1" complete="180"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
-<progress-bar  class="pa-1" complete="150"></progress-bar>
-<progress-bar  class="pa-1" complete="160"></progress-bar>
-<progress-bar  class="pa-1" complete="170"></progress-bar>
-<progress-bar  class="pa-1" complete="180"></progress-bar>
-<progress-bar  class="pa-1" complete="190"></progress-bar>
-<progress-bar  class="pa-1" complete="200"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
-<progress-bar  class="pa-1" complete="150"></progress-bar>
-<progress-bar  class="pa-1" complete="160"></progress-bar>
-<progress-bar  class="pa-1" complete="170"></progress-bar>
-<progress-bar  class="pa-1" complete="180"></progress-bar>
-<progress-bar  class="pa-1" complete="190"></progress-bar>
-<progress-bar  class="pa-1" complete="200"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
-<progress-bar  class="pa-1" complete="150"></progress-bar>
-<progress-bar  class="pa-1" complete="160"></progress-bar>
-<progress-bar  class="pa-1" complete="170"></progress-bar>
-<progress-bar  class="pa-1" complete="180"></progress-bar>
-<progress-bar  class="pa-1" complete="190"></progress-bar>
-<progress-bar  class="pa-1" complete="200"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
-<progress-bar  class="pa-1" complete="150"></progress-bar>
-<progress-bar  class="pa-1" complete="160"></progress-bar>
-<progress-bar  class="pa-1" complete="170"></progress-bar>
-<progress-bar  class="pa-1" complete="180"></progress-bar>
-<progress-bar  class="pa-1" complete="190"></progress-bar>
-<progress-bar  class="pa-1" complete="200"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
 
-<progress-bar  class="pa-1" complete="0"></progress-bar>
-<progress-bar  class="pa-1" complete="10"></progress-bar>
-<progress-bar  class="pa-1" complete="20"></progress-bar>
-<progress-bar  class="pa-1" complete="30"></progress-bar>
-<progress-bar  class="pa-1" complete="40"></progress-bar>
-<progress-bar  class="pa-1" complete="50"></progress-bar>
-<progress-bar  class="pa-1" complete="60"></progress-bar>
-<progress-bar  class="pa-1" complete="70"></progress-bar>
-<progress-bar  class="pa-1" complete="80"></progress-bar>
-<progress-bar  class="pa-1" complete="90"></progress-bar>
-<progress-bar  class="pa-1" complete="100"></progress-bar>
-<progress-bar  class="pa-1" complete="110"></progress-bar>
-<progress-bar  class="pa-1" complete="120"></progress-bar>
-<progress-bar  class="pa-1" complete="130"></progress-bar>
-<progress-bar  class="pa-1" complete="140"></progress-bar>
 
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+
+
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+
+
+
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
+<progress-bar class="progress-bar-parent pa-1"></progress-bar>
 
 <script src="static/progress-bar.js"></script>
-
 <script>
-    (function () {
+    (function(){
         const bar_1 = document.querySelector('#progress-bar-1');
+
+        const progressBars = document.querySelectorAll('.progress-bar-parent');
+        Array.prototype.forEach.call(progressBars, (bar, i)=> {new ProgressBar(bar, i * 10)});
 
         let complete = 5;
 
@@ -158,28 +163,20 @@
                 if(pb)
                     pb.push(parseFloat(performance.now()) - parseFloat(bodyRendering))
                 else
-                    pb =  [parseFloat(performance.now()) - parseFloat(bodyRendering)]
+                    pb = [parseFloat(performance.now()) - parseFloat(bodyRendering)]
 
                 localStorage.setItem('bodyRendering', JSON.stringify(pb))
             }
             complete = parseFloat((complete + 1) * 1.06).toFixed(1);
 
             if (complete <= 90) {
-                bar_1.complete = complete;
+                bar_1.setAttribute('complete', complete)
             } else {
-                bar_1.complete = 90
+                bar_1.setAttribute('complete', 90)
                 clearInterval(progressInterval);
-
-               /* let p = JSON.parse(localStorage.getItem('Performance'))
-                if (p && p.arr)
-                    p.arr.push(ProgressBar.performance)
-                else
-                    p = {arr: [ProgressBar.performance]}
-
-                localStorage.setItem('Performance', JSON.stringify(p))*/
             }
         }, 100);
-    })();
+    })()
 </script>
 </body>
 </html>

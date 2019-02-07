@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ImageSlider Web Component</title>
+    </head>
+    <body>
+    <script>let bodyRendering = performance.now()</script>
+    <h1>Web Component - Plain: ImageSlider</h1>
+        <div style="height: 400px; max-width: 700px;margin:auto;">
+            <image-slider selectedindex="0">
+                <img src="/static/img/pic-1.jpg" alt >
+                <img src="/static/img/pic-2.jpeg" alt >
+                <img src="/static/img/pic-3.jpeg" alt >
+                <img src="/static/img/pic-4.jpeg" alt >
+                <img src="/static/img/pic-5.jpeg" alt >
+                <img src="/static/img/pic-6.jpeg" alt >
+                <img src="/static/img/pic-1.jpg" alt >
+                <img src="/static/img/pic-3.jpeg" alt >
+                <img src="/static/img/pic-5.jpeg" alt >
+            </image-slider>
+        </div>
+
+
+        <script src="/static/image-slider.js"></script>
+    <script>
+        (function () {
+            const ImageSlider = document.querySelector('image-slider');
+            ImageSlider.addEventListener('updateSelectedIndex', (ev) => {
+                ImageSlider.setAttribute('selectedindex', ev.detail[0])
+            })
+
+            let index = 0;
+
+            let progressInterval = setInterval(() => {
+                index += 1;
+                if (index < 3) {
+                    ImageSlider.setAttribute('selectedindex', index)
+                } else {
+                    clearInterval(progressInterval);
+                    let pb = JSON.parse(localStorage.getItem('bodyRendering'))
+                    if (pb)
+                        pb.push(parseFloat(performance.now()) - parseFloat(bodyRendering))
+                    else
+                        pb = [parseFloat(performance.now()) - parseFloat(bodyRendering)]
+                    localStorage.setItem('bodyRendering', JSON.stringify(pb))
+
+                }
+            }, 1000);
+        })();
+    </script>
+    </body>
+</html>
