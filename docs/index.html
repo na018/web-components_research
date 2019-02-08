@@ -1601,9 +1601,10 @@ pre code {
   }
 }
 @media (min-width: 1200px) {
-  .container {
-    width: 1140px;
-  }
+    .container {
+        width: 78%;
+        max-width: 1300px;
+    }
 }
 .container-fluid {
   margin-right: auto;
@@ -13134,9 +13135,9 @@ $( document ).ready(function(){
 <body>
 <div id="chapters">
     <div>
-        <span class="selected">Chapter 1</span>
-        <a href="chapter2.html">Chapter 2</a>
-        <a href="chapter3.html">Chapter 3</a>
+        <span class="selected">Chapter 1: Web Components</span>
+        <a href="chapter2.html">Chapter 2: Progress Bar Performance Analysis</a>
+        <a href="chapter3.html">Chapter 3: Image Slider Performance Analysis</a>
     </div>
 </div>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
@@ -13713,7 +13714,7 @@ This allows to easily put in a <code>&lt;style&gt;</code> tag with the encapsula
 <div class="highlight"><pre><span></span><span class="nt">&lt;/style&gt;</span>
         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;progress-bar&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;progress-bar-inner&quot;</span> <span class="na">style=</span><span class="s">&quot;width: ${complete}%&quot;</span><span class="nt">&gt;</span>${this.complete}%<span class="nt">&lt;/div&gt;</span>
-        <span class="err">&lt;</span>/div
+         <span class="nt">&lt;/div&gt;</span>
         `;
     }
 

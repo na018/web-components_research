@@ -33,13 +33,13 @@ image-slider img {
     #chapters a:hover {
       color: white;
       text-decoration: none;
-      background: linear-gradient(to right, #636363, #958f8f, #a3a1a1, #eaeaea);
+      background: linear-gradient(to right, #1f4d75, #1b69ad, #2d6ca4, #1f4d75);
       transition: backgroun 1s;
       text-shadow: 1px 1px black; }
   #chapters .selected {
     display: block;
     width: 100%;
-    background: linear-gradient(to right, #868686, #bdb6b6, #c3c1c1, #eaeaea);
+    background: linear-gradient(to right, #545353, #817c7c, #a4a4a4, #938d8d);
     padding: 5px;
     margin: 5px;
     box-shadow: inset 1px 0 5px #69696b;
