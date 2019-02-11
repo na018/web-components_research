@@ -47,8 +47,3 @@ Furthermore, a general evaluation of the project is presented and final thoughts
 ## Authors
  **Nadin-Katrin Apel**
 
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
