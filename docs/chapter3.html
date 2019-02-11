@@ -13084,9 +13084,7 @@ div#notebook {
   }
 }
 </style>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+    
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
@@ -13140,14 +13138,14 @@ $( document ).ready(function(){
     </div>
 </div>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+      <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -13167,42 +13165,60 @@ $( document ).ready(function(){
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Web-Component-Performance-Testing:-ImageSlider">Web Component Performance Testing: ImageSlider<a class="anchor-link" href="#Web-Component-Performance-Testing:-ImageSlider">&#182;</a></h1><p>The previous chapter analyzed a rather simple web component with only one attribute.</p>
-    <div style="max-width: 700px;margin:auto;">
-        <image-slider selectedindex="0">
-            <img src="chapters/chapter3/static/assets/img/pic-1.jpg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-2.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-3.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-4.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-5.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-6.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-1.jpg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-3.jpeg" alt>
-            <img src="chapters/chapter3/static/assets/img/pic-5.jpeg" alt>
-        </image-slider>
-    </div>
-<p>The ImageSlider web component, which will be tested in the following chapter is a more difficult component.<br>
-The component accepts images, which will be reflected as the different slides of the slider.
-Furhtermore the initial visible slide can be set via the <code>selectedindex</code> attribute. 
-Click events will be fired when a click on a dot is performed or the arrow keys are used. 
-The component fires the event <code>updateSelectedIndex</code> for noticing the parent component about the change. 
-The parent component may use this information for reflecting to the <code>selectedindex</code> attribute, emitting an update in the ImageSlider component. The newly set index will lead to a slide change in the web component.</p>
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <h1 id="Web-Component-Performance-Testing:-ImageSlider">Web Component Performance Testing: ImageSlider<a class="anchor-link" href="#Web-Component-Performance-Testing:-ImageSlider">&#182;</a></h1>
+                  <div style="max-width: 700px;margin:auto;">
+                      <image-slider selectedindex="0">
+                          <img src="chapters/chapter3/static/assets/img/pic-1.jpg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-2.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-3.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-4.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-5.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-6.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-1.jpg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-3.jpeg" alt="" style="width: 11.1111%;">
+                          <img src="chapters/chapter3/static/assets/img/pic-5.jpeg" alt="" style="width: 11.1111%;">
+                      </image-slider>
+                      <script src="chapters/chapter3/static/image-slider.js"></script>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">image-slider</span> <span class="na">selectedindex</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;</span>
+                      <script>
+                          (function () {
+                              const ImageSlider = document.querySelector('image-slider');
+                              if(ImageSlider){
+                                  ImageSlider.addEventListener('updateSelectedIndex', (ev) => {
+                                      ImageSlider.setAttribute('selectedindex', ev.detail)
+                                  })
+                              }
+
+
+                              //  console.log(ProgressBar.performance)
+                          })();
+                      </script>
+                  </div>
+                  <p>The previous chapter analyzed a rather simple web component with only one attribute.</p>
+                  <p>The ImageSlider web component, which will be tested in the following chapter is a more difficult component.<br>
+                      The component accepts images, which will be reflected as the different slides of the slider.
+                      Furthermore, the initial visible slide can be set via the <code>selectedindex</code> attribute.
+                      Click events will be fired when a click on a dot is performed or the arrow keys are used.
+                      The component fires the event <code>updateSelectedIndex</code> for noticing the parent component about the change.
+                      The parent component may use this information for reflecting to the <code>selectedindex</code> attribute, emitting an update in the ImageSlider component. The newly set index will lead to a slide change in the web component.</p>
+
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <p>example of using the ImageSlider component inside an HTML page</p>
+                  <hr>
+                  <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">image-slider</span> <span class="na">selectedindex</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/img/pic-1.jpg&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/img/pic-2.jpeg&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/img/pic-3.jpeg&quot;</span><span class="p">&gt;</span>
@@ -13216,25 +13232,25 @@ The parent component may use this information for reflecting to the <code>select
     <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Performance-Measurement">Performance Measurement<a class="anchor-link" href="#Performance-Measurement">&#182;</a></h2><p>The previous chapter already explained the <code>check_performance_new_boot</code> function and why it is important not only to just reload the browser window, but reboot the browser entirely for getting confidential results.
-Here this function will be reused.</p>
-<p>Via JavaScript the component slides from slide at position zero over the second until the third slide. The passed time is persisted in the LocalStorage.</p>
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <h2 id="Performance-Measurement">Performance Measurement<a class="anchor-link" href="#Performance-Measurement">&#182;</a></h2><p>The previous chapter already explained the <code>check_performance_new_boot</code> function and why it is important not only to just reload the browser window, but reboot the browser entirely for getting confidential results.
+                  Here this function will be reused.</p>
+                  <p>Via JavaScript the component slides from slide at position zero over the second until the third slide. The passed time is persisted in the LocalStorage.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#function from the previos chapter</span>
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#function from the previos chapter</span>
 
 <span class="n">chromedriver</span> <span class="o">=</span> <span class="s2">&quot;/usr/local/bin/chromedriver&quot;</span>
 
@@ -13291,25 +13307,25 @@ Here this function will be reused.</p>
 		
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The next section iterates over the component files by calling the <code>check_performance_new_boot</code> function for each component test. The function then stores the measurements in a <code>BodyRendering.json</code> file.</p>
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <p>The next section iterates over the component files by calling the <code>check_performance_new_boot</code> function for each component test. The function then stores the measurements in a <code>BodyRendering.json</code> file.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># iterate over web components</span>
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># iterate over web components</span>
 <span class="n">foldernames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;00_web-component&#39;</span><span class="p">,</span>  
                <span class="s1">&#39;01-angular&#39;</span><span class="p">,</span> 
                <span class="s1">&#39;02-polymer&#39;</span><span class="p">,</span> 
@@ -13318,59 +13334,59 @@ Here this function will be reused.</p>
 <span class="p">[</span><span class="n">check_performance_new_boot</span><span class="p">(</span><span class="n">page_calls</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">sleep</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">foldername</span><span class="o">=</span><span class="n">foldernames</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">foldernames</span><span class="p">))]</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
+              <div class="output_wrapper">
+                  <div class="output">
 
 
-<div class="output_subarea output_stream output_stdout output_text">
+                      <div class="output_area">
+
+                          <div class="prompt"></div>
+
+
+                          <div class="output_subarea output_stream output_stdout output_text">
 <pre>🥳  🎉 🍾 Yay, successfully created &#34;performance_test_result/00_image-slider/00_web-component/BodyRendering.json&#34;
 🥳  🎉 🍾 Yay, successfully created &#34;performance_test_result/00_image-slider/01-angular/BodyRendering.json&#34;
 🥳  🎉 🍾 Yay, successfully created &#34;performance_test_result/00_image-slider/02-polymer/BodyRendering.json&#34;
 🥳  🎉 🍾 Yay, successfully created &#34;performance_test_result/00_image-slider/03-vue/BodyRendering.json&#34;
 </pre>
-</div>
-</div>
+                          </div>
+                      </div>
 
-<div class="output_area">
+                      <div class="output_area">
 
-    <div class="prompt output_prompt">Out[0]:</div>
-
-
+                          <div class="prompt output_prompt">Out[0]:</div>
 
 
-<div class="output_text output_subarea output_execute_result">
-<pre>[3096.0980000000563, 3160.3500000000167, 3020.847000000104, 3042.426000000051]</pre>
-</div>
 
-</div>
 
-</div>
-</div>
+                          <div class="output_text output_subarea output_execute_result">
+                              <pre>[3096.0980000000563, 3160.3500000000167, 3020.847000000104, 3042.426000000051]</pre>
+                          </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This section reads in the measurements stored in the JSON files and puts the calculations into a Pandas DataFrame.</p>
+                      </div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">body_rendering_path</span> <span class="o">=</span> <span class="s1">&#39;performance_test_result/00_image-slider/&#39;</span>
+                  </div>
+              </div>
+
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <p>This section reads in the measurements stored in the JSON files and puts the calculations into a Pandas DataFrame.</p>
+
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="n">body_rendering_path</span> <span class="o">=</span> <span class="s1">&#39;performance_test_result/00_image-slider/&#39;</span>
 
 <span class="c1"># read the json files in with pandas</span>
 <span class="n">web_component_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">body_rendering_path</span> <span class="o">+</span> <span class="s1">&#39;00_web-component/BodyRendering.json&#39;</span><span class="p">)</span>
@@ -13389,127 +13405,127 @@ Here this function will be reused.</p>
 <span class="n">performance_dataframe</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[0]:</div>
+              <div class="output_wrapper">
+                  <div class="output">
 
 
+                      <div class="output_area">
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+                          <div class="prompt output_prompt">Out[0]:</div>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>web_component</th>
-      <th>angular</th>
-      <th>polymer</th>
-      <th>vue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>100.0</td>
-      <td>100.0</td>
-      <td>100.0</td>
-      <td>100.0</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>3096.1</td>
-      <td>3160.4</td>
-      <td>3020.8</td>
-      <td>3042.4</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>4.7</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>3087.6</td>
-      <td>3145.7</td>
-      <td>3008.9</td>
-      <td>3028.8</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>3092.7</td>
-      <td>3156.2</td>
-      <td>3017.7</td>
-      <td>3038.4</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>3095.3</td>
-      <td>3159.6</td>
-      <td>3021.3</td>
-      <td>3041.2</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>3098.3</td>
-      <td>3164.2</td>
-      <td>3024.1</td>
-      <td>3044.5</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>3133.5</td>
-      <td>3177.3</td>
-      <td>3038.4</td>
-      <td>3109.1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
 
-</div>
+                          <div class="output_html rendered_html output_subarea output_execute_result">
+                              <div>
+                                  <style scoped>
+                                      .dataframe tbody tr th:only-of-type {
+                                          vertical-align: middle;
+                                      }
 
-</div>
-</div>
+                                      .dataframe tbody tr th {
+                                          vertical-align: top;
+                                      }
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The description shows a rather high standard deviation, which is why a graph may help to identify spikes.</p>
+                                      .dataframe thead th {
+                                          text-align: right;
+                                      }
+                                  </style>
+                                  <table border="1" class="dataframe">
+                                      <thead>
+                                      <tr style="text-align: right;">
+                                          <th></th>
+                                          <th>web_component</th>
+                                          <th>angular</th>
+                                          <th>polymer</th>
+                                          <th>vue</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                          <th>count</th>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                      </tr>
+                                      <tr>
+                                          <th>mean</th>
+                                          <td>3096.1</td>
+                                          <td>3160.4</td>
+                                          <td>3020.8</td>
+                                          <td>3042.4</td>
+                                      </tr>
+                                      <tr>
+                                          <th>std</th>
+                                          <td>6.0</td>
+                                          <td>6.0</td>
+                                          <td>4.7</td>
+                                          <td>10.0</td>
+                                      </tr>
+                                      <tr>
+                                          <th>min</th>
+                                          <td>3087.6</td>
+                                          <td>3145.7</td>
+                                          <td>3008.9</td>
+                                          <td>3028.8</td>
+                                      </tr>
+                                      <tr>
+                                          <th>25%</th>
+                                          <td>3092.7</td>
+                                          <td>3156.2</td>
+                                          <td>3017.7</td>
+                                          <td>3038.4</td>
+                                      </tr>
+                                      <tr>
+                                          <th>50%</th>
+                                          <td>3095.3</td>
+                                          <td>3159.6</td>
+                                          <td>3021.3</td>
+                                          <td>3041.2</td>
+                                      </tr>
+                                      <tr>
+                                          <th>75%</th>
+                                          <td>3098.3</td>
+                                          <td>3164.2</td>
+                                          <td>3024.1</td>
+                                          <td>3044.5</td>
+                                      </tr>
+                                      <tr>
+                                          <th>max</th>
+                                          <td>3133.5</td>
+                                          <td>3177.3</td>
+                                          <td>3038.4</td>
+                                          <td>3109.1</td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># figure for the web components created with the frameworks</span>
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <p>The description shows a rather high standard deviation, which is why a graph may help to identify spikes.</p>
+
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># figure for the web components created with the frameworks</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">performance_dataframe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Framework Analysis&quot;</span><span class="p">,</span>
                                        <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">stacked</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -13519,59 +13535,59 @@ Here this function will be reused.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
+              <div class="output_wrapper">
+                  <div class="output">
 
 
+                      <div class="output_area">
 
-
-<div class="output_text output_subarea ">
-<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
+                          <div class="prompt"></div>
 
 
 
 
-<div class="output_png output_subarea ">
-<img src="chapters/chapter3/static/chapter_3_performance_ImageSlider_10_1.png"
->
-</div>
+                          <div class="output_text output_subarea ">
+                              <pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
+                          </div>
 
-</div>
+                      </div>
 
-</div>
-</div>
+                      <div class="output_area">
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected the graph shows some spikes. For flattening the lines the previously defined function <code>regulate_df</code> is reused.</p>
+                          <div class="prompt"></div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># define function for flattening the performance measurement graphs</span>
+
+
+
+                          <div class="output_png output_subarea ">
+                              <img src="chapters/chapter3/static/chapter_3_performance_ImageSlider_10_1.png"
+                              >
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <p>As expected the graph shows some spikes. For flattening the lines the previously defined function <code>regulate_df</code> is reused.</p>
+
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># define function for flattening the performance measurement graphs</span>
 <span class="k">def</span> <span class="nf">regulate_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 	<span class="n">mean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 	<span class="n">std</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
@@ -13582,32 +13598,32 @@ Here this function will be reused.</p>
 	<span class="k">return</span> <span class="n">df</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># iterate over web component DateFrames</span>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># iterate over web component DateFrames</span>
 <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
 	<span class="n">regulate_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check new description of the regulated DataFrame</span>
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check new description of the regulated DataFrame</span>
 <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">web_component_dataframe</span><span class="p">,</span> <span class="n">angular_dataframe</span><span class="p">,</span> <span class="n">polymer_dataframe</span><span class="p">,</span> <span class="n">vue_dataframe</span><span class="p">]</span>
 <span class="n">performance_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;web_component&#39;</span><span class="p">,</span> <span class="s1">&#39;angular&#39;</span><span class="p">,</span> <span class="s1">&#39;polymer&#39;</span><span class="p">,</span> <span class="s1">&#39;vue&#39;</span><span class="p">]</span>
 <span class="n">performance_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13615,119 +13631,119 @@ Here this function will be reused.</p>
 <span class="n">performance_dataframe</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[0]:</div>
+              <div class="output_wrapper">
+                  <div class="output">
 
 
+                      <div class="output_area">
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+                          <div class="prompt output_prompt">Out[0]:</div>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>web_component</th>
-      <th>angular</th>
-      <th>polymer</th>
-      <th>vue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>100.0</td>
-      <td>100.0</td>
-      <td>100.0</td>
-      <td>100.0</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>3095.6</td>
-      <td>3159.8</td>
-      <td>3020.9</td>
-      <td>3041.4</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>2.6</td>
-      <td>2.6</td>
-      <td>2.4</td>
-      <td>3.6</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>3090.2</td>
-      <td>3154.5</td>
-      <td>3016.2</td>
-      <td>3032.6</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>3093.8</td>
-      <td>3158.3</td>
-      <td>3019.7</td>
-      <td>3038.7</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>3096.1</td>
-      <td>3160.4</td>
-      <td>3020.8</td>
-      <td>3042.1</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>3096.8</td>
-      <td>3160.4</td>
-      <td>3022.5</td>
-      <td>3044.4</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>3102.0</td>
-      <td>3165.8</td>
-      <td>3025.5</td>
-      <td>3051.4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
 
-</div>
+                          <div class="output_html rendered_html output_subarea output_execute_result">
+                              <div>
+                                  <style scoped>
+                                      .dataframe tbody tr th:only-of-type {
+                                          vertical-align: middle;
+                                      }
 
-</div>
-</div>
+                                      .dataframe tbody tr th {
+                                          vertical-align: top;
+                                      }
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># figure for the web components created with the frameworks</span>
+                                      .dataframe thead th {
+                                          text-align: right;
+                                      }
+                                  </style>
+                                  <table border="1" class="dataframe">
+                                      <thead>
+                                      <tr style="text-align: right;">
+                                          <th></th>
+                                          <th>web_component</th>
+                                          <th>angular</th>
+                                          <th>polymer</th>
+                                          <th>vue</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                          <th>count</th>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                          <td>100.0</td>
+                                      </tr>
+                                      <tr>
+                                          <th>mean</th>
+                                          <td>3095.6</td>
+                                          <td>3159.8</td>
+                                          <td>3020.9</td>
+                                          <td>3041.4</td>
+                                      </tr>
+                                      <tr>
+                                          <th>std</th>
+                                          <td>2.6</td>
+                                          <td>2.6</td>
+                                          <td>2.4</td>
+                                          <td>3.6</td>
+                                      </tr>
+                                      <tr>
+                                          <th>min</th>
+                                          <td>3090.2</td>
+                                          <td>3154.5</td>
+                                          <td>3016.2</td>
+                                          <td>3032.6</td>
+                                      </tr>
+                                      <tr>
+                                          <th>25%</th>
+                                          <td>3093.8</td>
+                                          <td>3158.3</td>
+                                          <td>3019.7</td>
+                                          <td>3038.7</td>
+                                      </tr>
+                                      <tr>
+                                          <th>50%</th>
+                                          <td>3096.1</td>
+                                          <td>3160.4</td>
+                                          <td>3020.8</td>
+                                          <td>3042.1</td>
+                                      </tr>
+                                      <tr>
+                                          <th>75%</th>
+                                          <td>3096.8</td>
+                                          <td>3160.4</td>
+                                          <td>3022.5</td>
+                                          <td>3044.4</td>
+                                      </tr>
+                                      <tr>
+                                          <th>max</th>
+                                          <td>3102.0</td>
+                                          <td>3165.8</td>
+                                          <td>3025.5</td>
+                                          <td>3051.4</td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="cell border-box-sizing code_cell rendered">
+              <div class="input">
+                  <div class="prompt input_prompt">In&nbsp;[0]:</div>
+                  <div class="inner_cell">
+                      <div class="input_area">
+                          <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># figure for the web components created with the frameworks</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">performance_dataframe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Framework Analysis&quot;</span><span class="p">,</span>
                                        <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">stacked</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -13737,98 +13753,81 @@ Here this function will be reused.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
+                      </div>
+                  </div>
+              </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
+              <div class="output_wrapper">
+                  <div class="output">
 
 
+                      <div class="output_area">
 
-
-<div class="output_text output_subarea ">
-<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
+                          <div class="prompt"></div>
 
 
 
 
-<div class="output_png output_subarea ">
-<img src="chapters/chapter3/static/chapter_3_performance_ImageSlider_15_1.png"
->
-</div>
+                          <div class="output_text output_subarea ">
+                              <pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
+                          </div>
 
-</div>
+                      </div>
 
-</div>
-</div>
+                      <div class="output_area">
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Observations">Observations<a class="anchor-link" href="#Observations">&#182;</a></h2><p>The Graph shows that the web component created with the help of the Polymer library performs best and the one created with Angular worst. 
-Interestingly the plain web component's performance is in between the two of them.<br>
-The Vue web component performs slightly worse then the Polymer component, but better then the web component.</p>
+                          <div class="prompt"></div>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Conclusion-and-Further-Thoughts">Conclusion and Further Thoughts<a class="anchor-link" href="#Conclusion-and-Further-Thoughts">&#182;</a></h1><ul>
-<li>build reusable shareable web components</li>
-<li>reusable between teams or even companies</li>
-<li>divide and split work</li>
-<li>add independence</li>
-<li>less error prone -&gt; encapsulated</li>
-</ul>
-<p>The creation of plain Web Components is very well documented by <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">the Mozilla MDM web docs</a> or the<a href="https://developers.google.com/web/fundamentals/web-components/"> Google developer documentation</a>.</p>
-<p>The creation of the components with slots, especially applying styling via the <code>::slotted</code> attribute was neither possible in Vue nor Angular and could only be performed by binding the styles directly to the HTML nodes.</p>
-<p>However, Polymer works by far better with styling, the Polymer 3 documentation is still little. To solve the issue how a parameter could be passed if the user clicks on a dot, could only be done after a great research process.</p>
-<p>All in all, which one to choose is about personal preference of course. However as current recommendation, Angular is not the most fitting framework, since the slow performance and the missing support for slots. A lot of Angular web components could reduce the website's speed drastically compared to the contestants.</p>
-<p>To create a web component with Vue is very comfortable and not different to when just creating usual Vue.js components. Only the <code>::slotted</code> attribute came with little difficulties, which via style binding were easily resolved. Furthermore, this component consists of the fewest lines of code a developer has to write.</p>
-<p>Nevertheless, one major issue that was not discussed yet are common styles.
-Some styles like the font styles or theme specific styles that make the website look consistent currently can only be performed with great effort.</p>
-<p>One could for example include a general stylesheet into all the components. However, this would lead to a lot of overhead and make sharing the Web Components more difficult.</p>
-<p>Or an attribute could be defined for the components. E.g. a font attribute etc.</p>
-<p>The perfect solution here would be to declare inside the component, which stylings should be applied from the hosting Web Page.</p>
-<p>Before this issue is not solved, simple shareable Web Components, that can be easily plugged into a HTML Web Page, will probably not appear to much.</p>
-<p>Components will likely exist in one application which is bound to one framework only. Hopefully in the future this issue will be solved and collaboration become easier.</p>
 
-</div>
-</div>
-</div>
-    </div>
+
+
+                          <div class="output_png output_subarea ">
+                              <img src="chapters/chapter3/static/chapter_3_performance_ImageSlider_15_1.png"
+                              >
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <h2 id="Observations">Observations<a class="anchor-link" href="#Observations">&#182;</a></h2><p>The Graph shows that the web component created with the help of the Polymer library performs best and the one created with Angular worst.</p>
+                  <ul>
+                      <li>Angular performs about 5% worse then polymer and about 3% worse then the vanilla web component.</li>
+                      <li>The vanilla Web Component performs about 2.5% worse then the Polymer web component.</li>
+                      <li>Vue performs about .7% worse then the Polymer web component.</li>
+                  </ul>
+                  <p>However, the graph displays huge differences, taking a look at the comparison percentages, the difference in performance is only between .7% and 5%, which is not that height, but could be important when using many components on a website.</p>
+
+              </div>
+          </div>
+          </div>
+          <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+          </div><div class="inner_cell">
+              <div class="text_cell_render border-box-sizing rendered_html">
+                  <h1 id="Conclusion-and-Further-Thoughts">Conclusion and Further Thoughts<a class="anchor-link" href="#Conclusion-and-Further-Thoughts">&#182;</a></h1><p>The creation of plain Web Components is very well documented by <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">the Mozilla MDM web docs</a> or the<a href="https://developers.google.com/web/fundamentals/web-components/"> Google developer documentation</a>.</p>
+                  <p>The creation of the components with slots, especially applying styling via the <code>::slotted</code> attribute was neither possible in Vue nor Angular and could only be performed by binding the styles directly to the HTML nodes.</p>
+                  <p>However, Polymer works by far better with styling, the Polymer 3 documentation is still little. To solve the issue how a parameter could be passed if the user clicks on a dot, came with a great research process.</p>
+                  <p>All in all, which one to choose is about personal preference of course. However, as current recommendation, Angular for components build for outside use of the framework, is not the most fitting one, since the slow performance and the missing support for slots. A lot of Angular web components could reduce the website's speed drastically compared to the contestants.</p>
+                  <p>To create a web component with Vue is very comfortable and not different to when just creating usual Vue.js components. Only the <code>::slotted</code> attribute came with little difficulties, which via style binding were easily resolved. Furthermore, this component consists of the fewest lines of code a developer has to write.</p>
+                  <p>Nevertheless, one major issue that was not discussed yet are common styles.
+                      Some styles like the font styles or theme specific styles that make the website look consistent currently can only be performed with great effort.</p>
+                  <p>One could for example include a general stylesheet into all the components. However, this would lead to a lot of overhead and make sharing the Web Components more difficult.</p>
+                  <p>Or an attribute could be defined for the components. E.g. a font attribute etc.</p>
+                  <p>The perfect solution here would be to declare inside the component, which stylings should be applied from the hosting Web Page.</p>
+                  <p>Before this issue is not solved, simple shareable Web Components, that can be easily plugged into a HTML Web Page, will probably not appear to much.</p>
+                  <p>Components will likely exist in one application which is bound to one framework only. Hopefully in the future this issue will be solved and collaboration becomes easier.</p>
+
+              </div>
+          </div>
+          </div>
+      </div>
   </div>
-  <script src="chapters/chapter3/static/image-slider.js"></script>
 
-  <script>
-      (function () {
-          const ImageSlider = document.querySelector('image-slider');
-          if(ImageSlider){
-              ImageSlider.addEventListener('updateSelectedIndex', (ev) => {
-                  ImageSlider.setAttribute('selectedindex', ev.detail)
-              })
-          }
-
-
-          //  console.log(ProgressBar.performance)
-      })();
-  </script>
 </body>
 
  
